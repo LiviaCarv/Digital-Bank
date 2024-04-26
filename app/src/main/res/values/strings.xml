@@ -12,4 +12,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="password">Password</string>
     <string name="telephone">Telephone</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">E-mail</string>
+    <string name="send_email">Send e-mail</string>
 </resources>
