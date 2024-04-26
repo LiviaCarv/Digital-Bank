@@ -7,4 +7,9 @@
     <string name="create_account">Create account</string>
     <string name="recover_account">Recover account</string>
     <string name="button_login">Login</string>
+    <string name="info_please_provide_your_email">Please provide your email to receive a password recovery email</string>
+    <string name="register_account">Register account</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password">Password</string>
+    <string name="telephone">Telephone</string>
 </resources>

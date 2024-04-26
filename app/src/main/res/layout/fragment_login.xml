@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/white"
     tools:context=".ui.auth.LoginFragment">
 
@@ -52,7 +53,7 @@
                 android:id="@+id/editText_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock_open"
+                android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="@dimen/default_padding"
                 android:hint="@string/enter_your_password"
                 android:inputType="textPassword" />
@@ -65,8 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_between_elements_16dp"
             android:background="@drawable/background_button"
-            app:backgroundTint="@null"
             android:text="@string/button_login"
+            app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_password_layout" />
