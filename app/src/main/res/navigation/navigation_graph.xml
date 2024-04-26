@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/auth">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.project.digitalbank.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+    <navigation
+        android:id="@+id/auth"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.project.digitalbank.ui.auth.LoginFragment"
+            android:label="fragment_login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_recoverAccountFragment"
+                app:destination="@id/recoverAccountFragment" />
+            <action
+                android:id="@+id/action_loginFragment_to_registerFragment"
+                app:destination="@id/registerFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/recoverAccountFragment"
+            android:name="com.project.digitalbank.ui.auth.RecoverAccountFragment"
+            android:label="fragment_recover_account"
+            tools:layout="@layout/fragment_recover_account" />
+        <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.project.digitalbank.ui.auth.RegisterFragment"
+            android:label="fragment_register"
+            tools:layout="@layout/fragment_register" />
+    </navigation>
+</navigation>

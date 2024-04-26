@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282172612468",
+    "project_id": "digital-bank-d0a23",
+    "storage_bucket": "digital-bank-d0a23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282172612468:android:83337e56f351edd6a61621",
+        "android_client_info": {
+          "package_name": "com.project.digitalbank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKYeoD6XMPkmhXdW5Uo7NJxyhlhtlstTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

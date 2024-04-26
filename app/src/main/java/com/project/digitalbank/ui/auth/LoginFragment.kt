@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -29,6 +31,12 @@ class LoginFragment : Fragment() {
     private fun initListener() {
         binding.btnLogin.setOnClickListener {
             validateData()
+        }
+        binding.txtCreateAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+        binding.txtRecoverAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_recoverAccountFragment)
         }
     }
 
