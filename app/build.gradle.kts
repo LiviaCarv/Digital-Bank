@@ -44,6 +44,13 @@ dependencies {
     // firebase
     implementation(platform(libs.firebase.bom))
 
+    //authentication
+    implementation(libs.firebase.ui.auth)
+
+    //realtime database
+    implementation("com.google.firebase:firebase-database")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
