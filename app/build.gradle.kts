@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,6 +52,10 @@ dependencies {
     //realtime database
     implementation("com.google.firebase:firebase-database")
 
+    // dependecy injection c hilt
+    implementation(libs.hilt.android.v2481)
+    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
