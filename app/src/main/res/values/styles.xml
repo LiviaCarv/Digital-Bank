@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_text_input_edit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/default_padding</item>
+    </style>
+
+    <style name="style_progress_bar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginVertical">@dimen/margin_between_elements_16dp</item>
+        <item name="android:indeterminateTint">@color/color_default</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="style_toolbar">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/color_default</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

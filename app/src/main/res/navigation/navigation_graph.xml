@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/auth">
+    app:startDestination="@id/nav_auth">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -11,7 +11,7 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
     <navigation
-        android:id="@+id/auth"
+        android:id="@+id/nav_auth"
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/loginFragment"

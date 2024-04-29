@@ -19,7 +19,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Recover account">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -31,13 +30,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:text="@string/recover_account"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
+                    style="@style/style_toolbar" />
 
             </com.google.android.material.appbar.MaterialToolbar>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
@@ -68,10 +65,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_email"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,14 +87,10 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_between_elements_16dp"
-            android:indeterminateTint="@color/color_default"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            style="@style/style_progress_bar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

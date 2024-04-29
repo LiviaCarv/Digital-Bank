@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Recover account" >
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -30,10 +29,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:text="@string/register_account"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    style="@style/style_toolbar" />
 
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -47,14 +44,12 @@
             android:hint="@string/hint_name"
             android:textColorHint="@color/color_default"
             app:expandedHintEnabled="true"
-            app:startIconContentDescription="E-mail">
+            app:startIconContentDescription="Name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtText_register_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_person"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,10 +67,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtText_register_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_email"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,14 +82,12 @@
             android:hint="@string/telephone"
             android:textColorHint="@color/color_default"
             app:expandedHintEnabled="true"
-            app:startIconContentDescription="E-mail">
+            app:startIconContentDescription="Telephone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtText_register_telephone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_phone"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,14 +100,12 @@
             android:hint="@string/password"
             android:textColorHint="@color/color_default"
             app:expandedHintEnabled="true"
-            app:startIconContentDescription="E-mail">
+            app:startIconContentDescription="Password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtText_register_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_lock"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -129,14 +118,12 @@
             android:hint="@string/confirm_password"
             android:textColorHint="@color/color_default"
             app:expandedHintEnabled="true"
-            app:startIconContentDescription="E-mail">
+            app:startIconContentDescription="Confirm password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtText_register_conf_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_lock"
-                android:drawablePadding="@dimen/default_padding"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -154,11 +141,8 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_between_elements_16dp"
-            android:indeterminateTint="@color/color_default"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            style="@style/style_progress_bar" />
 
     </LinearLayout>
 
