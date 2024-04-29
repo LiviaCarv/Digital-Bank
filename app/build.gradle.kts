@@ -57,6 +57,12 @@ dependencies {
     ksp(libs.dagger.compiler)
     ksp(libs.dagger.hilt.android.compiler)
 
+    // ViewModel
+    implementation(libs.lifecycle.viewmodel.ktx)
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

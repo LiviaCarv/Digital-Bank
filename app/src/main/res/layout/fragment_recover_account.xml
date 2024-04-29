@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fillViewport="true"
-    tools:context=".ui.auth.RecoverAccountFragment">
+    tools:context=".ui.auth.recover.RecoverAccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

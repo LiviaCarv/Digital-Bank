@@ -15,7 +15,7 @@
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/loginFragment"
-            android:name="com.project.digitalbank.ui.auth.LoginFragment"
+            android:name="com.project.digitalbank.ui.auth.login.LoginFragment"
             android:label="fragment_login"
             tools:layout="@layout/fragment_login">
             <action
@@ -27,12 +27,12 @@
         </fragment>
         <fragment
             android:id="@+id/recoverAccountFragment"
-            android:name="com.project.digitalbank.ui.auth.RecoverAccountFragment"
+            android:name="com.project.digitalbank.ui.auth.recover.RecoverAccountFragment"
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
         <fragment
             android:id="@+id/registerFragment"
-            android:name="com.project.digitalbank.ui.auth.RegisterFragment"
+            android:name="com.project.digitalbank.ui.auth.register.RegisterFragment"
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
     </navigation>
