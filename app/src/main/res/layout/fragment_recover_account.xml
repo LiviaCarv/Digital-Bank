@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_between_elements_16dp"
             android:layout_marginHorizontal="@dimen/padding_login_itens_24dp"
-            android:text="@string/info_please_provide_your_email"
+            android:text="@string/recover_please_provide_your_email"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

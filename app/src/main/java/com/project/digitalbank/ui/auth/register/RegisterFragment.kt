@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentRegisterBinding
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
+import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,17 +53,17 @@ class RegisterFragment : Fragment() {
             val password = edtTextRegisterPassword.text.toString().trim()
             val confirmationPassword = edtTextRegisterConfPassword.text.toString().trim()
             if (name.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide your name", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_provide_name))
             } else if (email.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide a valid e-mail", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_provide_email))
             } else if (phoneNumber.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide your phone number", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_provide_phone))
             } else if (password.isEmpty()){
-                Toast.makeText(requireContext(), "Please provide a valid password", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_provide_password))
             }  else if (confirmationPassword.isEmpty()) {
-                Toast.makeText(requireContext(), "Please confirm your password", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_confirm_password_empty))
             } else if (confirmationPassword != password) {
-                Toast.makeText(requireContext(), "Password different", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_confirm_password_wrong))
             }
             else {
                 val user = User(name, email, phoneNumber, password)
@@ -76,10 +79,16 @@ class RegisterFragment : Fragment() {
             when(stateView) {
                 is StateView.Loading -> binding.progressBar.isVisible = true
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Creating account...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Creating account...", Toast.LENGTH_SHORT)
+                        .show()
                     binding.progressBar.isVisible = false
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
-                else -> Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+
+                else -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

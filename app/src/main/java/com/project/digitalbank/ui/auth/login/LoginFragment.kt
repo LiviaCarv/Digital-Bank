@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
-import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentLoginBinding
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,9 +52,10 @@ class LoginFragment : Fragment() {
             val email = editTextEmail.text.toString().trim()
             val password = editTextPassword.text.toString().trim()
             if (email.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide a valid email", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message =getString(R.string.register_provide_email))
             } else if (password.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide a valid password", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message =getString(R.string.register_provide_password))
+
             } else {
                loginUser(email, password)
             }
@@ -72,7 +73,10 @@ class LoginFragment : Fragment() {
                     binding.progressBar.isVisible = false
                     findNavController().navigate(R.id.action_global_homeFragment)
                 }
-                else -> Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                else -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

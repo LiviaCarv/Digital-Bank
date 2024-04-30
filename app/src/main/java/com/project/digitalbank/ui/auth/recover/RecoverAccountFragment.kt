@@ -13,6 +13,7 @@ import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentRecoverAccountBinding
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
+import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +47,7 @@ class RecoverAccountFragment : Fragment() {
         binding.apply {
             val email = editTextEmail.text.toString().trim()
             if (email.isEmpty()) {
-                Toast.makeText(requireContext(), "Please provide a valid email", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message=getString(R.string.register_provide_email))
             } else {
                 recoverAccount(email)
 
@@ -60,11 +61,15 @@ class RecoverAccountFragment : Fragment() {
             when(stateView) {
                 is StateView.Loading -> binding.progressBar.isVisible = true
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Sending email...", Toast.LENGTH_SHORT).show()
+                    showBottomSheet(message=getString(R.string.recover_email_sent))
                     binding.progressBar.isVisible = false
                 }
-                else -> Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                else -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
             }
+            binding.progressBar.isVisible = false
         }
     }
 

@@ -7,7 +7,6 @@
     <string name="create_account">Create account</string>
     <string name="recover_account">Recover account</string>
     <string name="button_login">Login</string>
-    <string name="info_please_provide_your_email">Please provide your email to receive a password recovery email</string>
     <string name="register_account">Register account</string>
     <string name="confirm_password">Confirm password</string>
     <string name="password">Password</string>
@@ -15,4 +14,20 @@
     <string name="hint_name">Name</string>
     <string name="hint_email">E-mail</string>
     <string name="send_email">Send e-mail</string>
+    <string name="txt_bottom_sheet_ok">Ok</string>
+    <string name="txt_bottom_sheet_warning">Warning</string>
+
+    <!-- Register & Login Fragment -->
+    <string name="register_provide_name">Please enter your name.</string>
+    <string name="register_provide_email">Please provide a valid email address.</string>
+    <string name="register_provide_password">Please enter a valid password.</string>
+    <string name="register_provide_phone">Please enter a valid phone number.</string>
+    <string name="register_confirm_password_wrong">Passwords do not match.</string>
+    <string name="register_confirm_password_empty">Please confirm your password.</string>
+
+    <!-- Recover Fragment -->
+    <string name="recover_please_provide_your_email">Please provide your email to receive a password recovery e-mail.</string>
+    <string name="recover_email_sent">E-mail sent.</string>
+
+
 </resources>
