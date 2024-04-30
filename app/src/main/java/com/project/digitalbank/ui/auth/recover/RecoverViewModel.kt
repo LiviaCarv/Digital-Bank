@@ -1,5 +1,6 @@
 package com.project.digitalbank.ui.auth.recover
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.project.digitalbank.domain.auth.RecoverUseCase
 import com.project.digitalbank.util.StateView
@@ -10,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecoverViewModel @Inject constructor(
     private val recoverUseCase: RecoverUseCase
-) {
+): ViewModel() {
     fun login (email: String) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())

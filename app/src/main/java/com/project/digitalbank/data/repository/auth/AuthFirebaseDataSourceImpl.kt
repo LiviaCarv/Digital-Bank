@@ -31,7 +31,6 @@ class AuthFirebaseDataSourceImpl  @Inject constructor(
 
     override suspend fun register(user: User) : User {
         return suspendCoroutine { continuation ->
-
             firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

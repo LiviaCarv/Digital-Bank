@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentRegisterBinding
+import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +19,7 @@ class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,13 +63,26 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "Password different", Toast.LENGTH_SHORT).show()
             }
             else {
-                Toast.makeText(requireContext(), "Creating account...", Toast.LENGTH_SHORT).show()
-
+                val user = User(name, email, phoneNumber, password)
+                registerUser(user)
             }
 
         }
     }
 
+    private fun registerUser(user: User) {
+
+        registerViewModel.register(user).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> binding.progressBar.isVisible = true
+                is StateView.Success -> {
+                    Toast.makeText(requireContext(), "Creating account...", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
+                else -> Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 
     override fun onDestroyView() {
