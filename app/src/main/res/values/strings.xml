@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Digital Bank</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Generics -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
@@ -16,6 +17,8 @@
     <string name="send_email">Send e-mail</string>
     <string name="txt_bottom_sheet_ok">Ok</string>
     <string name="txt_bottom_sheet_warning">Warning</string>
+    <string name="error_generic">An error occurred! Please try again later.</string>
+
 
     <!-- Register & Login Fragment -->
     <string name="register_provide_name">Please enter your name.</string>
@@ -28,6 +31,13 @@
     <!-- Recover Fragment -->
     <string name="recover_please_provide_your_email">Please provide your email to receive a password recovery e-mail.</string>
     <string name="recover_email_sent">E-mail sent.</string>
+
+    <!-- Firebase Authentication Errors -->
+    <string name="auth_account_not_registered">Account not registered.</string>
+    <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
+    <string name="auth_invalid_password">The given password is invalid. Try again.</string>
+    <string name="auth_email_already_registered">This e-mail is already registered.</string>
+    <string name="auth_require_stronger_password">Please provide a stronger password.</string>
 
 
 </resources>

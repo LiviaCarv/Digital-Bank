@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentLoginBinding
+import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,7 +76,8 @@ class LoginFragment : Fragment() {
                 }
                 else -> {
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+
                 }
             }
         }
