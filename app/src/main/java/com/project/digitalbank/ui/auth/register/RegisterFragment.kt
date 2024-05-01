@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
+import com.project.digitalbank.data.model.Wallet
 import com.project.digitalbank.databinding.FragmentRegisterBinding
 import com.project.digitalbank.ui.user_profile.UserProfileViewModel
+import com.project.digitalbank.ui.wallet.WalletViewModel
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
@@ -26,6 +28,7 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private val registerViewModel: RegisterViewModel by viewModels()
     private val userProfileViewModel: UserProfileViewModel by viewModels()
+    private val walletViewModel: WalletViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,21 +59,20 @@ class RegisterFragment : Fragment() {
             val password = edtTextRegisterPassword.text.toString().trim()
             val confirmationPassword = edtTextRegisterConfPassword.text.toString().trim()
             if (name.isEmpty()) {
-                showBottomSheet(message=getString(R.string.register_provide_name))
+                showBottomSheet(message = getString(R.string.register_provide_name))
             } else if (email.isEmpty()) {
-                showBottomSheet(message=getString(R.string.register_provide_email))
+                showBottomSheet(message = getString(R.string.register_provide_email))
             } else if (phoneNumber?.isEmpty() == true) {
-                showBottomSheet(message=getString(R.string.register_provide_phone))
-            } else if (phoneNumber?.length != 11){
-                showBottomSheet(message=getString(R.string.register_phone_number_invalid))
-            } else if (password.isEmpty()){
-                showBottomSheet(message=getString(R.string.register_provide_password))
-            }  else if (confirmationPassword.isEmpty()) {
-                showBottomSheet(message=getString(R.string.register_confirm_password_empty))
+                showBottomSheet(message = getString(R.string.register_provide_phone))
+            } else if (phoneNumber?.length != 11) {
+                showBottomSheet(message = getString(R.string.register_phone_number_invalid))
+            } else if (password.isEmpty()) {
+                showBottomSheet(message = getString(R.string.register_provide_password))
+            } else if (confirmationPassword.isEmpty()) {
+                showBottomSheet(message = getString(R.string.register_confirm_password_empty))
             } else if (confirmationPassword != password) {
-                showBottomSheet(message=getString(R.string.register_confirm_password_wrong))
-            }
-            else {
+                showBottomSheet(message = getString(R.string.register_confirm_password_wrong))
+            } else {
                 val user = User(name, email, phoneNumber, password)
                 registerUser(name, email, phoneNumber, password)
             }
@@ -78,37 +80,35 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    // saves user in firebase authentication
     private fun registerUser(name: String, email: String, phone: String, password: String) {
 
-        registerViewModel.register(name, email, phone, password).observe(viewLifecycleOwner) { stateView ->
-            when(stateView) {
-                is StateView.Loading -> binding.progressBar.isVisible = true
-                is StateView.Success -> {
+        registerViewModel.register(name, email, phone, password)
+            .observe(viewLifecycleOwner) { stateView ->
+                when (stateView) {
+                    is StateView.Loading -> binding.progressBar.isVisible = true
+                    is StateView.Success -> {
+                        stateView.data?.let {
+                            saveProfile(it)
+                        }
+                    }
 
-                    stateView.data?.let {
-                        saveProfile(it)
+                    else -> {
+                        binding.progressBar.isVisible = false
+                        showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
                     }
                 }
-
-                else -> {
-                    binding.progressBar.isVisible = false
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
-                }
             }
-        }
     }
 
+    // saves user's profile in firebase database
     private fun saveProfile(user: User) {
         userProfileViewModel.saveProfile(user).observe(viewLifecycleOwner) { stateView ->
-            when(stateView) {
-                is StateView.Loading -> {
-
-                }
+            when (stateView) {
+                is StateView.Loading -> {}
                 is StateView.Success -> {
-                    binding.progressBar.isVisible = false
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    initWallet()
                 }
-
                 else -> {
                     binding.progressBar.isVisible = false
                     showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
@@ -117,6 +117,23 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun initWallet() {
+        walletViewModel.initWallet(Wallet(userId = FirebaseHelper.getUserId()))
+            .observe(viewLifecycleOwner) { stateView ->
+                when (stateView) {
+                    is StateView.Loading -> {}
+                    is StateView.Success -> {
+                        binding.progressBar.isVisible = false
+                        findNavController().navigate(R.id.action_global_homeFragment)
+                    }
+
+                    else -> {
+                        binding.progressBar.isVisible = false
+                        showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                    }
+                }
+            }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

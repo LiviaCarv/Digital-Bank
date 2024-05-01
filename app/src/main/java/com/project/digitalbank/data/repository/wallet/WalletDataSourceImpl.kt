@@ -1,24 +1,23 @@
-package com.project.digitalbank.data.repository.user_profile
+package com.project.digitalbank.data.repository.wallet
 
 import com.google.firebase.database.FirebaseDatabase
-import com.project.digitalbank.data.model.User
+import com.project.digitalbank.data.model.Wallet
 import com.project.digitalbank.util.FirebaseHelper
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
-class UserProfileRepositoryImpl @Inject constructor(
+class WalletDataSourceImpl @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase
-) : UserProfileRepository{
+) : WalletDataSource {
 
+    private val walletPreferences = firebaseDatabase.reference
+        .child("wallet")
 
-    private val profilePreferences = firebaseDatabase.reference
-        .child("profile")
-        .child(FirebaseHelper.getUserId())
-
-    override suspend fun saveProfile(user: User) {
+    override suspend fun initWallet(wallet: Wallet) {
         return suspendCoroutine { continuation ->
-           profilePreferences
-                .setValue(user)
+            walletPreferences
+                .child(wallet.id)
+                .setValue(wallet)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         continuation.resumeWith(Result.success(Unit))
@@ -30,5 +29,4 @@ class UserProfileRepositoryImpl @Inject constructor(
                 }
         }
     }
-
 }
