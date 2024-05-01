@@ -5,7 +5,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_generic">An error occurred! Please try again later.</string>
 
-
     <!-- Bottom Sheet -->
     <string name="txt_bottom_sheet_ok">Ok</string>
     <string name="txt_bottom_sheet_warning">Warning</string>
@@ -39,15 +38,7 @@
 
     <!-- Home Fragment -->
     <string name="text_account_balance_format">$ %1$s</string>
-
-
-    <!-- Firebase Authentication Errors -->
-    <string name="auth_account_not_registered">Account not registered.</string>
-    <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
-    <string name="auth_invalid_password">The given password is invalid. Try again.</string>
-    <string name="auth_email_already_registered">This e-mail is already registered.</string>
-    <string name="auth_require_stronger_password">Please provide a stronger password.</string>
-    <string name="card_transfer">Transfer</string>
+    <string name="card_transfer">Transaction</string>
     <string name="card_profile">Profile</string>
     <string name="card_deposit">Deposit</string>
     <string name="card_mobile_recharge">Mobile Recharge</string>
@@ -55,6 +46,14 @@
     <string name="title_account_balance">Account balance</string>
     <string name="last_6_activities">Last 6 activities</string>
     <string name="see_all">See all</string>
+
+    <!-- Firebase Authentication Errors -->
+    <string name="auth_account_not_registered">Account not registered.</string>
+    <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
+    <string name="auth_invalid_password">The given password is invalid. Try again.</string>
+    <string name="auth_email_already_registered">This e-mail is already registered.</string>
+    <string name="auth_require_stronger_password">Please provide a stronger password.</string>
+
 
 
 </resources>

@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_balance" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txt_last_transactions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/bigger_margin"
@@ -77,18 +77,29 @@
                 android:textSize="@dimen/default_text_size_14sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/txt_last_transactions"
                 android:text="@string/see_all" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_last_transactions"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/default_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_show_all_activities" />
+                app:layout_constraintStart_toStartOf="@+id/txt_last_transactions"
+                app:layout_constraintTop_toBottomOf="@+id/btn_show_all_activities">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_last_transactions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_show_all_activities"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_last_transaction" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
