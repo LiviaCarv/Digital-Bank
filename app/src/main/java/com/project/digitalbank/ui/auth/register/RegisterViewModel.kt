@@ -13,15 +13,16 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
 ) : ViewModel() {
-    fun register(user: User) = liveData(Dispatchers.IO) {
-        try {
-            emit(StateView.Loading())
+    fun register(name: String, email: String, phone: String, password: String) =
+        liveData(Dispatchers.IO) {
+            try {
+                emit(StateView.Loading())
 
-            registerUseCase.invoke(user)
+                val user = registerUseCase.invoke(name, email, phone, password)
 
-            emit(StateView.Success(user, "User registered"))
-        } catch (exception: Exception) {
-            emit(StateView.Error(exception.message))
+                emit(StateView.Success(user, "User registered"))
+            } catch (exception: Exception) {
+                emit(StateView.Error(exception.message))
+            }
         }
-    }
 }

@@ -3,6 +3,14 @@
 
     <!-- Generics -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_generic">An error occurred! Please try again later.</string>
+
+
+    <!-- Bottom Sheet -->
+    <string name="txt_bottom_sheet_ok">Ok</string>
+    <string name="txt_bottom_sheet_warning">Warning</string>
+
+    <!-- Authentication fragments layout -->
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="create_account">Create account</string>
@@ -15,10 +23,6 @@
     <string name="hint_name">Name</string>
     <string name="hint_email">E-mail</string>
     <string name="send_email">Send e-mail</string>
-    <string name="txt_bottom_sheet_ok">Ok</string>
-    <string name="txt_bottom_sheet_warning">Warning</string>
-    <string name="error_generic">An error occurred! Please try again later.</string>
-
 
     <!-- Register & Login Fragment -->
     <string name="register_provide_name">Please enter your name.</string>
@@ -27,6 +31,7 @@
     <string name="register_provide_phone">Please enter a valid phone number.</string>
     <string name="register_confirm_password_wrong">Passwords do not match.</string>
     <string name="register_confirm_password_empty">Please confirm your password.</string>
+    <string name="register_phone_number_invalid">Please enter a valid phone number.</string>
 
     <!-- Recover Fragment -->
     <string name="recover_please_provide_your_email">Please provide your email to receive a password recovery e-mail.</string>

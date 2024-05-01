@@ -1,12 +1,15 @@
 package com.project.digitalbank.util
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.project.digitalbank.R
 
 class FirebaseHelper {
 
     companion object {
         fun isAuthenticated() = FirebaseAuth.getInstance().currentUser != null
+
+        fun getUserId() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         fun validError(error: String): Int {
             return when {

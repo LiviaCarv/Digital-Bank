@@ -84,11 +84,12 @@
             app:expandedHintEnabled="true"
             app:startIconContentDescription="Telephone">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.vicmikhailau.maskededittext.MaskedEditText
                 android:id="@+id/edtText_register_telephone"
                 style="@style/style_text_input_edit"
                 android:drawableStart="@drawable/ic_phone"
-                android:inputType="number" />
+                android:inputType="number"
+                app:mask="(##) #####-####"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

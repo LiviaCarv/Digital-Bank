@@ -62,6 +62,8 @@ dependencies {
     // LiveData
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
+    //masked edit text - https://github.com/VicMikhailau/MaskedEditText
+    implementation("io.github.vicmikhailau:MaskedEditText:5.0.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
