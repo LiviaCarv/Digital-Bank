@@ -37,12 +37,24 @@
     <string name="recover_please_provide_your_email">Please provide your email to receive a password recovery e-mail.</string>
     <string name="recover_email_sent">E-mail sent.</string>
 
+    <!-- Home Fragment -->
+    <string name="text_account_balance_format">$ %1$s</string>
+
+
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
     <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
     <string name="auth_invalid_password">The given password is invalid. Try again.</string>
     <string name="auth_email_already_registered">This e-mail is already registered.</string>
     <string name="auth_require_stronger_password">Please provide a stronger password.</string>
+    <string name="card_transfer">Transfer</string>
+    <string name="card_profile">Profile</string>
+    <string name="card_deposit">Deposit</string>
+    <string name="card_mobile_recharge">Mobile Recharge</string>
+    <string name="card_statement">Statement</string>
+    <string name="title_account_balance">Account balance</string>
+    <string name="last_6_activities">Last 6 activities</string>
+    <string name="see_all">See all</string>
 
 
 </resources>

@@ -8,6 +8,6 @@ sealed class StateView<T> (
 
     class Error<T>(message: String?) : StateView<T>(message= message)
 
-    class Success<T>(data: T?, message: String?) : StateView<T>(data=data, message = message)
+    class Success<T>(data: T?, message: String? = null) : StateView<T>(data=data, message = message)
 
 }

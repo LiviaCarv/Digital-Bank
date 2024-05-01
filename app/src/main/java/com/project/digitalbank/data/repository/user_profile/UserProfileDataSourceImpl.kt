@@ -11,13 +11,13 @@ class UserProfileDataSourceImpl @Inject constructor(
 ) : UserProfileDataSource{
 
 
-    private val profilePreferences = firebaseDatabase.reference
+    private val profileReference = firebaseDatabase.reference
         .child("profile")
         .child(FirebaseHelper.getUserId())
 
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
-           profilePreferences
+           profileReference
                 .setValue(user)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

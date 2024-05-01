@@ -1,28 +1,29 @@
-package com.project.digitalbank.ui.wallet
+package com.project.digitalbank.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.project.digitalbank.data.model.Wallet
-import com.project.digitalbank.domain.wallet.InitWalletUseCase
+import com.project.digitalbank.domain.wallet.GetWalletUseCase
 import com.project.digitalbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @HiltViewModel
-class WalletViewModel @Inject constructor(
-    private val initWalletUseCase: InitWalletUseCase
+class HomeViewModel @Inject constructor(
+    private val getWalletUseCase: GetWalletUseCase
 ) : ViewModel() {
 
-    fun initWallet(wallet: Wallet) = liveData(Dispatchers.IO) {
+    fun getWallet() = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
 
-            initWalletUseCase.invoke(wallet)
+            val wallet = getWalletUseCase.invoke()
 
-            emit(StateView.Success(null, null))
+            emit(StateView.Success(wallet))
         } catch (exception: Exception) {
             emit(StateView.Error(exception.message))
         }
     }
+
+
 }
