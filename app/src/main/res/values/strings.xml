@@ -54,8 +54,15 @@
     <string name="auth_email_already_registered">This e-mail is already registered.</string>
     <string name="auth_require_stronger_password">Please provide a stronger password.</string>
     <string name="enter_the_value_to_be_deposited">Enter the value to be deposited</string>
+
+    <!-- Deposit Fragments-->
     <string name="deposit_value">Deposit value:</string>
     <string name="confirm">Confirm</string>
+    <string name="deposit_success">Deposit successfully\ncompleted!</string>
+    <string name="deposit_available_3_buss_days">Your deposit will be available within 3 business days.</string>
+    <string name="transaction_code">Transaction code</string>
+    <string name="deposit_date">Deposit date:</string>
+    <string name="receipt">Receipt</string>
 
 
 </resources>

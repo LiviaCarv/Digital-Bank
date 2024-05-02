@@ -65,5 +65,14 @@
         android:id="@+id/depositFormFragment"
         android:name="com.project.digitalbank.ui.features.deposit.DepositFormFragment"
         android:label="fragment_deposit_form"
-        tools:layout="@layout/fragment_deposit_form" />
+        tools:layout="@layout/fragment_deposit_form" >
+        <action
+            android:id="@+id/action_depositFormFragment_to_depositReceiptFragment"
+            app:destination="@id/depositReceiptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/depositReceiptFragment"
+        android:name="com.project.digitalbank.ui.features.deposit.DepositReceiptFragment"
+        android:label="fragment_deposit_receipt"
+        tools:layout="@layout/fragment_deposit_receipt" />
 </navigation>

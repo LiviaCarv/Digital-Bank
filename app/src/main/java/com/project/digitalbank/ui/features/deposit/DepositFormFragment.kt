@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentDepositFormBinding
 import com.project.digitalbank.util.initToolBar
 
@@ -30,7 +32,7 @@ class DepositFormFragment : Fragment() {
 
     private fun initListener() {
         binding.btnConfirm.setOnClickListener {
-
+            findNavController().navigate(R.id.action_depositFormFragment_to_depositReceiptFragment)
         }
     }
 
