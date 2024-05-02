@@ -56,5 +56,14 @@
         android:id="@+id/homeFragment"
         android:name="com.project.digitalbank.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_depositFormFragment"
+            app:destination="@id/depositFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/depositFormFragment"
+        android:name="com.project.digitalbank.ui.features.deposit.DepositFormFragment"
+        android:label="fragment_deposit_form"
+        tools:layout="@layout/fragment_deposit_form" />
 </navigation>

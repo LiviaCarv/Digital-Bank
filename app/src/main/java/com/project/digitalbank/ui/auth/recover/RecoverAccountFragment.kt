@@ -34,7 +34,7 @@ class RecoverAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolBar(binding.toolbar)
+        initToolBar(toolbar = binding.toolbar)
         initListener()
     }
 

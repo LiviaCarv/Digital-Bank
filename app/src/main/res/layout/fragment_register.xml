@@ -133,9 +133,9 @@
             android:id="@+id/btn_create_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_between_elements_16dp"
             android:layout_marginHorizontal="@dimen/padding_login_itens_24dp"
-            android:background="@drawable/background_button"
+            android:layout_marginTop="@dimen/margin_between_elements_16dp"
+            style="@style/style_material_button"
             android:text="@string/create_account"
             app:backgroundTint="@null"
             app:layout_constraintTop_toBottomOf="@+id/editText_email_layout" />

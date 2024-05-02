@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_between_elements_16dp"
             android:layout_marginHorizontal="@dimen/padding_login_itens_24dp"
-            android:background="@drawable/background_button"
+            style="@style/style_material_button"
             android:text="@string/send_email"
             app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"

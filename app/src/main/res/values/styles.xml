@@ -29,4 +29,10 @@
         <item name="android:textColor">@color/color_default</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="style_material_button">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/background_button</item>
+    </style>
 </resources>

@@ -43,7 +43,7 @@
                 android:layout_marginTop="@dimen/margin_between_elements_16dp"
                 android:text="@string/title_account_balance"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_text_size_14sp"
+                android:textSize="@dimen/smaller_text_size_14sp"
                 app:layout_constraintStart_toStartOf="@+id/materialCardView"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/bigger_margin"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_text_size_14sp"
+                android:textSize="@dimen/smaller_text_size_14sp"
                 app:layout_constraintStart_toStartOf="@+id/txt_display_account_balance"
                 app:layout_constraintTop_toBottomOf="@+id/txt_display_account_balance"
                 android:text="@string/last_6_activities" />
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_text_size_14sp"
+                android:textSize="@dimen/smaller_text_size_14sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/txt_last_transactions"
@@ -122,6 +122,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_deposit"
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size"
                 android:layout_marginVertical="@dimen/default_margin"
@@ -153,6 +154,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_mobile_recharge"
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size"
                 android:layout_marginVertical="@dimen/default_margin"
@@ -184,6 +186,8 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_statement"
+
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size"
                 android:layout_marginVertical="@dimen/default_margin"
@@ -215,6 +219,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_transaction"
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size"
                 android:layout_marginVertical="@dimen/default_margin"
@@ -246,6 +251,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_profile"
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size"
                 android:layout_marginHorizontal="@dimen/margin_between_elements_16dp"

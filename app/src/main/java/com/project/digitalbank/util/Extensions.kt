@@ -7,12 +7,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.project.digitalbank.R
 import com.project.digitalbank.databinding.LayoutBottomSheetBinding
 
-fun Fragment.initToolBar(toolbar: Toolbar, homeAsUpEnabled: Boolean = true) {
+fun Fragment.initToolBar(toolbar: Toolbar, homeAsUpEnabled: Boolean = true, light: Boolean = false) {
     ((activity) as AppCompatActivity).apply {
         setSupportActionBar(toolbar)
         title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(homeAsUpEnabled)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        supportActionBar?.setHomeAsUpIndicator(if (light) R.drawable.ic_arrow_back_white else R.drawable.ic_arrow_back)
     }
     toolbar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
 }
