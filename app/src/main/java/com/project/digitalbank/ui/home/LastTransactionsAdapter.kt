@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.ItemLastTransactionBinding
 import com.project.digitalbank.util.GetMask
@@ -23,7 +24,7 @@ class LastTransactionsAdapter(
         }
 
         override fun areContentsTheSame(oldItem: Transaction, newItem: Transaction): Boolean {
-            return oldItem.id == newItem.id &&  oldItem.description == newItem.description
+            return oldItem.id == newItem.id
         }
 
     }
@@ -42,14 +43,9 @@ class LastTransactionsAdapter(
         val transaction = getItem(position)
         holder.binding.apply {
             txtTransactionDate.text = GetMask.getFormattedDate(transaction.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
-            txtTransactionDescription.text = transaction.description
+            txtTransactionDescription.text = transaction.operation?.toString() ?: "NULL"
             txtTransactionValue.text = GetMask.getFormattedValue(transaction.value)
-            txtTransactionType.text = when(transaction.description) {
-                "Transaction" -> "T"
-                "Mobile Recharge" -> "R"
-                "Deposit" -> "D"
-                else -> ""
-            }
+            txtTransactionType.text = transaction.operation?.let { TransactionOperation.getType(it).toString() }
         }
 
     }

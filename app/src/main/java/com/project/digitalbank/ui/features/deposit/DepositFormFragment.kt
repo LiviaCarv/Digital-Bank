@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
+import com.project.digitalbank.data.enum.TransactionOperation
+import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Deposit
+import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentDepositFormBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
@@ -64,7 +67,31 @@ class DepositFormFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     stateView.data?.let {
+                        val transaction = Transaction(
+                            id= stateView.data.id,
+                            date=stateView.data.date,
+                            value = stateView.data.value,
+                            type = TransactionType.CASH_IN,
+                            operation = TransactionOperation.DEPOSIT)
+                        saveTransaction(transaction)
                         StateView.Success(deposit.id)
+                    }
+                }
+                else -> {
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+
+                }
+            }
+        }
+    }
+
+    private fun saveTransaction(transaction: Transaction) {
+        depositViewModel.saveTransaction(transaction).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {}
+                is StateView.Success -> {
+                    stateView.data?.let {
+                        StateView.Success(transaction)
                         binding.progressBar.isVisible = false
                         findNavController().navigate(R.id.action_depositFormFragment_to_depositReceiptFragment)
                     }
@@ -75,11 +102,7 @@ class DepositFormFragment : Fragment() {
 
                 }
             }
-
-
         }
-
-
     }
 
 
