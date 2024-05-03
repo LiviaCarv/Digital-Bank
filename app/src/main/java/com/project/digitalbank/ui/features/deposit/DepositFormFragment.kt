@@ -1,19 +1,30 @@
 package com.project.digitalbank.ui.features.deposit
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
+import com.project.digitalbank.data.model.Deposit
 import com.project.digitalbank.databinding.FragmentDepositFormBinding
+import com.project.digitalbank.util.FirebaseHelper
+import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
+import com.project.digitalbank.util.showBottomSheet
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DepositFormFragment : Fragment() {
 
     private var _binding: FragmentDepositFormBinding? = null
     private val binding get() = _binding!!
+    private val depositViewModel: DepositViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +42,46 @@ class DepositFormFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.btnConfirm.setOnClickListener {
-            findNavController().navigate(R.id.action_depositFormFragment_to_depositReceiptFragment)
+        binding.btnConfirm.setOnClickListener { validateDeposit() }
+    }
+
+    private fun validateDeposit() {
+        val value = binding.edtTxtDepositValue.text.toString().trim()
+
+        if (value.isNotEmpty()) {
+            val deposit = Deposit(value=value.toFloat())
+            saveDeposit(deposit)
+        } else {
+            showBottomSheet(message = "Insert a deposit value.")
         }
     }
+
+    private fun saveDeposit(deposit: Deposit) {
+        depositViewModel.saveDeposit(deposit).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is StateView.Success -> {
+                    stateView.data?.let {
+                        StateView.Success(deposit.id)
+                        binding.progressBar.isVisible = false
+                        findNavController().navigate(R.id.action_depositFormFragment_to_depositReceiptFragment)
+                    }
+                }
+                else -> {
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                    binding.progressBar.isVisible = false
+
+                }
+            }
+
+
+        }
+
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
