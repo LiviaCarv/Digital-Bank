@@ -6,6 +6,7 @@ import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Deposit
 import com.project.digitalbank.data.model.Transaction
+import com.project.digitalbank.domain.deposit.GetDepositFromDatabaseUseCase
 import com.project.digitalbank.domain.deposit.SaveDepositUseCase
 import com.project.digitalbank.domain.transaction.SaveTransactionUseCase
 import com.project.digitalbank.util.StateView
@@ -16,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DepositViewModel @Inject constructor(
     private val saveDepositUseCase: SaveDepositUseCase,
-    private val saveTransactionUseCase: SaveTransactionUseCase
+    private val saveTransactionUseCase: SaveTransactionUseCase,
 ) : ViewModel() {
 
     fun saveDeposit(deposit: Deposit) = liveData(Dispatchers.IO) {

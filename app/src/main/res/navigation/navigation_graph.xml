@@ -81,7 +81,7 @@
             android:id="@+id/action_depositReceiptFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="deposit"
-            app:argType="com.project.digitalbank.data.model.Deposit" />
+            android:name="id_deposit"
+            app:argType="string" />
     </fragment>
 </navigation>
