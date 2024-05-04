@@ -67,13 +67,7 @@ class DepositFormFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     stateView.data?.let {
-                        val transaction = Transaction(
-                            id= stateView.data.id,
-                            date=stateView.data.date,
-                            value = stateView.data.value,
-                            type = TransactionType.CASH_IN,
-                            operation = TransactionOperation.DEPOSIT)
-                        saveTransaction(transaction)
+                        stateView.data.let { saveTransaction(stateView.data)}
                         StateView.Success(deposit.id)
                     }
                 }
@@ -85,7 +79,15 @@ class DepositFormFragment : Fragment() {
         }
     }
 
-    private fun saveTransaction(transaction: Transaction) {
+    private fun saveTransaction(deposit: Deposit) {
+
+        val transaction = Transaction(
+            id= deposit.id,
+            date=deposit.date,
+            value = deposit.value,
+            type = TransactionType.CASH_IN,
+            operation = TransactionOperation.DEPOSIT)
+
         depositViewModel.saveTransaction(transaction).observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {}
@@ -93,7 +95,8 @@ class DepositFormFragment : Fragment() {
                     stateView.data?.let {
                         StateView.Success(transaction)
                         binding.progressBar.isVisible = false
-                        findNavController().navigate(R.id.action_depositFormFragment_to_depositReceiptFragment)
+                        val action = DepositFormFragmentDirections.actionDepositFormFragmentToDepositReceiptFragment(deposit)
+                        findNavController().navigate(action)
                     }
                 }
                 else -> {

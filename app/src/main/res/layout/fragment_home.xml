@@ -67,7 +67,7 @@
                 android:textSize="@dimen/smaller_text_size_14sp"
                 app:layout_constraintStart_toStartOf="@+id/txt_display_account_balance"
                 app:layout_constraintTop_toBottomOf="@+id/txt_display_account_balance"
-                android:text="@string/last_6_activities" />
+                android:text="@string/last_5_activities" />
 
             <TextView
                 android:id="@+id/btn_show_all_activities"

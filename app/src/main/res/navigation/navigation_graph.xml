@@ -68,11 +68,20 @@
         tools:layout="@layout/fragment_deposit_form" >
         <action
             android:id="@+id/action_depositFormFragment_to_depositReceiptFragment"
-            app:destination="@id/depositReceiptFragment" />
+            app:destination="@id/depositReceiptFragment"
+            app:popUpTo="@id/depositFormFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/depositReceiptFragment"
         android:name="com.project.digitalbank.ui.features.deposit.DepositReceiptFragment"
         android:label="fragment_deposit_receipt"
-        tools:layout="@layout/fragment_deposit_receipt" />
+        tools:layout="@layout/fragment_deposit_receipt" >
+        <action
+            android:id="@+id/action_depositReceiptFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="deposit"
+            app:argType="com.project.digitalbank.data.model.Deposit" />
+    </fragment>
 </navigation>

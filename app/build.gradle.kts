@@ -4,6 +4,9 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -43,6 +46,7 @@ android {
 }
 
 dependencies {
+
     // firebase
     implementation(platform(libs.firebase.bom))
 

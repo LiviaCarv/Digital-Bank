@@ -44,7 +44,7 @@
     <string name="card_mobile_recharge">Mobile Recharge</string>
     <string name="card_statement">Statement</string>
     <string name="title_account_balance">Account balance</string>
-    <string name="last_6_activities">Last 6 activities</string>
+    <string name="last_5_activities">Last 5 transactions</string>
     <string name="see_all">See all</string>
 
     <!-- Firebase Authentication Errors -->

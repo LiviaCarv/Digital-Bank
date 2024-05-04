@@ -50,7 +50,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun configRecyclerView() {
-        transactionsAdapter = TransactionsAdapter(requireContext()) {}
+        transactionsAdapter = TransactionsAdapter(requireContext()) {
+
+        }
         with(binding.recyclerLastTransactions) {
             setHasFixedSize(true)
             adapter= transactionsAdapter
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    transactionsAdapter.submitList(stateView.data?.reversed())
+                    transactionsAdapter.submitList(stateView.data?.reversed()?.take(5))
                     configBalance(stateView.data ?: emptyList())
                 }
                 else -> {

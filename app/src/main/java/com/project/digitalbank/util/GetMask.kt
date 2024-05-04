@@ -14,22 +14,21 @@ class GetMask {
 
         fun getFormattedDate(date: Long, type: Int): String {
             val locale = Locale("pt", "BR")
-            val fuso = "America/Sao_Paulo"
 
             val daySdf = SimpleDateFormat("dd", locale)
-            daySdf.timeZone = TimeZone.getTimeZone(fuso)
+            daySdf.timeZone = TimeZone.getDefault()
 
             val monthSdf = SimpleDateFormat("MM", locale)
-            monthSdf.timeZone = TimeZone.getTimeZone(fuso)
+            monthSdf.timeZone = TimeZone.getDefault()
 
             val yearSdf = SimpleDateFormat("yyyy", locale)
-            yearSdf.timeZone = TimeZone.getTimeZone(fuso)
+            yearSdf.timeZone = TimeZone.getDefault()
 
             val hourSdf = SimpleDateFormat("HH", locale)
-            hourSdf.timeZone = TimeZone.getTimeZone(fuso)
+            hourSdf.timeZone = TimeZone.getDefault()
 
             val minuteSdf = SimpleDateFormat("mm", locale)
-            minuteSdf.timeZone = TimeZone.getTimeZone(fuso)
+            minuteSdf.timeZone = TimeZone.getDefault()
 
             val dateFormat: DateFormat = getDateTimeInstance()
             val netDate = Date(date)
