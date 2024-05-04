@@ -11,7 +11,7 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:background="@drawable/bg_round"
-        android:backgroundTint="#EE0406"
+        android:backgroundTint="@color/red_cash_out"
         android:gravity="center"
         android:textColor="@color/white"
         android:layout_margin="@dimen/margin_16dp"

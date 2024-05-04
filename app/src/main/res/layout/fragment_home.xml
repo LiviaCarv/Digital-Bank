@@ -88,14 +88,33 @@
                 app:layout_constraintStart_toStartOf="@+id/txt_last_transactions"
                 app:layout_constraintTop_toBottomOf="@+id/btn_show_all_activities">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_last_transactions"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/default_margin"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_show_all_activities"
-                    tools:itemCount="6"
-                    tools:listitem="@layout/item_last_transaction" />
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" >
+
+                   <ProgressBar
+                       android:id="@+id/progress_bar"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:indeterminateTint="@color/color_default"
+                       android:visibility="invisible"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="@+id/recycler_last_transactions"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="@+id/recycler_last_transactions" />
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recycler_last_transactions"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       tools:itemCount="6"
+                       tools:listitem="@layout/item_transaction" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </com.google.android.material.card.MaterialCardView>

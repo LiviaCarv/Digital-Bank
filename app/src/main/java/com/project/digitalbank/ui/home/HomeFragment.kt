@@ -1,15 +1,16 @@
 package com.project.digitalbank.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
-import com.project.digitalbank.data.model.Wallet
+import com.project.digitalbank.data.enum.TransactionType
+import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentHomeBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.GetMask
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var transactionsAdapter: TransactionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +37,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configRecyclerView()
         initListener()
-        getWallet()
+        getTransactions()
 
     }
 
@@ -46,20 +49,30 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getWallet() {
-        homeViewModel.getWallet().observe(viewLifecycleOwner) { stateView ->
+    private fun configRecyclerView() {
+        transactionsAdapter = TransactionsAdapter(requireContext()) {}
+        with(binding.recyclerLastTransactions) {
+            setHasFixedSize(true)
+            adapter= transactionsAdapter
+        }
+    }
+
+
+    private fun getTransactions() {
+        homeViewModel.getTransactions().observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {
                     binding.txtDisplayAccountBalance.text = "Loading..."
+                    binding.progressBar.isVisible = true
                 }
                 is StateView.Success -> {
-                    stateView.data?.let {
-                        Log.i("INFOTESTE", "CONFIG BALANCE CHAMADO")
-                        configBalance(it)
-                    }
+                    binding.progressBar.isVisible = false
+                    transactionsAdapter.submitList(stateView.data?.reversed())
+                    configBalance(stateView.data ?: emptyList())
                 }
                 else -> {
                     showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                    binding.progressBar.isVisible = false
                 }
             }
 
@@ -67,8 +80,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun configBalance(wallet: Wallet) {
-        binding.txtDisplayAccountBalance.text = getString(R.string.text_account_balance_format, GetMask.getFormattedValue(wallet.balance))
+    private fun configBalance(transactions: List<Transaction>) {
+        var balance = 0f
+        for (tr in transactions) {
+            if (tr.type == TransactionType.CASH_IN) {
+                balance += tr.value
+            } else {
+                balance -= tr.value
+            }
+        }
+        binding.txtDisplayAccountBalance.text = getString(R.string.text_account_balance_format, GetMask.getFormattedValue(balance))
     }
 
     override fun onDestroyView() {

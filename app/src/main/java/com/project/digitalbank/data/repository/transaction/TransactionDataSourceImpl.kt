@@ -1,9 +1,13 @@
 package com.project.digitalbank.data.repository.transaction
 
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
+import com.google.firebase.database.ValueEventListener
 import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.util.FirebaseHelper
+import com.project.digitalbank.util.StateView
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
@@ -14,6 +18,25 @@ class TransactionDataSourceImpl @Inject constructor(
     private val transactionReference = firebaseDatabase.reference
         .child("transaction")
         .child(FirebaseHelper.getUserId())
+
+    override suspend fun getTransactions(): List<Transaction> {
+        return suspendCoroutine { continuation ->
+            transactionReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val transactions = mutableListOf<Transaction>()
+                    for (ds in snapshot.children) {
+                        val transaction = ds.getValue(Transaction::class.java) as Transaction
+                        transactions.add(transaction)
+                    }
+                    continuation.resumeWith(Result.success(transactions))
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    continuation.resumeWith(Result.failure(error.toException()))
+                }
+            })
+        }
+    }
 
     override suspend fun saveTransaction(transaction: Transaction) {
         return suspendCoroutine { continuation ->
