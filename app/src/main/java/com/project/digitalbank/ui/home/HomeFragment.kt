@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
+import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentHomeBinding
@@ -51,7 +52,13 @@ class HomeFragment : Fragment() {
 
     private fun configRecyclerView() {
         transactionsAdapter = TransactionsAdapter(requireContext()) {
-
+           when (it.operation) {
+               TransactionOperation.DEPOSIT -> {
+                   val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(it.id)
+                   findNavController().navigate(action)
+               }
+               else -> {}
+           }
         }
         with(binding.recyclerLastTransactions) {
             setHasFixedSize(true)

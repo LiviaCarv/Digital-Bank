@@ -14,6 +14,7 @@ import com.project.digitalbank.databinding.FragmentDepositReceiptBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.GetMask
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,13 +35,14 @@ class DepositReceiptFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolBar(binding.toolbar, homeAsUpEnabled = false)
         getDepositFromDatabase(args.idDeposit)
         initListener()
     }
 
     private fun initListener() {
         binding.btnConfirm.setOnClickListener {
-            findNavController().navigate(R.id.action_depositReceiptFragment_to_homeFragment)
+            findNavController().popBackStack()
         }
     }
 
