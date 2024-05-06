@@ -48,6 +48,12 @@ class HomeFragment : Fragment() {
         binding.cardDeposit.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
         }
+        binding.cardStatement.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_statementFragment)
+        }
+        binding.btnShowAllActivities.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_statementFragment)
+        }
     }
 
     private fun configRecyclerView() {

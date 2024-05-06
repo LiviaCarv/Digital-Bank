@@ -63,6 +63,7 @@
     <string name="transaction_code">Transaction code</string>
     <string name="deposit_date">Deposit date:</string>
     <string name="receipt">Receipt</string>
+    <string name="statement">Statement</string>
 
 
 </resources>
