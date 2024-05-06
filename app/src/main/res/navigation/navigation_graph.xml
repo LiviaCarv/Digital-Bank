@@ -71,6 +71,9 @@
             app:destination="@id/authentication"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_homeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -100,5 +103,11 @@
         <action
             android:id="@+id/action_statementFragment_to_depositReceiptFragment"
             app:destination="@id/depositReceiptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.project.digitalbank.ui.user_profile.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
     </fragment>
 </navigation>

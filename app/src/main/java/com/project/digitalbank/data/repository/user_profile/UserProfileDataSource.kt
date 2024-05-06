@@ -5,4 +5,6 @@ import com.project.digitalbank.data.model.User
 interface UserProfileDataSource {
 
     suspend fun saveProfile(user: User)
+
+    suspend fun getUserProfile() : User
 }

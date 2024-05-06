@@ -1,6 +1,9 @@
 package com.project.digitalbank.data.repository.user_profile
 
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.util.FirebaseHelper
 import javax.inject.Inject
@@ -28,6 +31,24 @@ class UserProfileDataSourceImpl @Inject constructor(
                         }
                     }
                 }
+        }
+    }
+
+    override suspend fun getUserProfile(): User {
+        return suspendCoroutine { continuation ->
+            profileReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userProfile = snapshot.getValue(User::class.java)
+                userProfile?.let {
+                    continuation.resumeWith(Result.success(it))
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                continuation.resumeWith(Result.failure(error.toException()))
+
+            }
+        })
+
         }
     }
 

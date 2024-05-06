@@ -46,6 +46,8 @@
     <string name="title_account_balance">Account balance</string>
     <string name="last_5_activities">Last 5 transactions</string>
     <string name="see_all">See all</string>
+    <string name="title_dialog_confirm_logout">Do you want to sign out of your account?</string>
+    <string name="text_message_logout">Please confirm if you want to sign out.</string>
 
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
@@ -64,6 +66,7 @@
     <string name="deposit_date">Deposit date:</string>
     <string name="receipt">Receipt</string>
     <string name="statement">Statement</string>
+    <string name="update_info">Update info</string>
 
 
 </resources>

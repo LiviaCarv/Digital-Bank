@@ -54,10 +54,9 @@
         app:layout_constraintTop_toTopOf="@+id/txt_transaction_description"
         tools:text="R$ 55,55" />
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="?actionBarDivider"
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

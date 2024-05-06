@@ -56,9 +56,23 @@ class HomeFragment : Fragment() {
         binding.btnShowAllActivities.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_statementFragment)
         }
+        binding.cardProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_userProfileFragment)
+        }
+        logoutListener()
+    }
+
+    private fun logoutListener() {
         binding.btnLogout.setOnClickListener {
-            FirebaseHelper.getAuth().signOut()
-            findNavController().navigate(R.id.action_homeFragment_to_authentication)
+            showBottomSheet(
+                message = getString(R.string.text_message_logout),
+                titleDialog = R.string.title_dialog_confirm_logout,
+                titleButton = R.string.txt_bottom_sheet_ok,
+                onClick = {
+                    FirebaseHelper.getAuth().signOut()
+                    findNavController().navigate(R.id.action_homeFragment_to_authentication)
+                }
+            )
         }
     }
 
