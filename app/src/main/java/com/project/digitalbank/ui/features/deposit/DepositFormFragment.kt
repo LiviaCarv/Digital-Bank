@@ -17,6 +17,7 @@ import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentDepositFormBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +53,7 @@ class DepositFormFragment : Fragment() {
         val value = binding.edtTxtDepositValue.text.toString().trim()
 
         if (value.isNotEmpty()) {
+            hideKeyboard()
             val deposit = Deposit(value=value.toFloat())
             saveDeposit(deposit)
         } else {

@@ -13,6 +13,7 @@ import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentRecoverAccountBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +51,7 @@ class RecoverAccountFragment : Fragment() {
             if (email.isEmpty()) {
                 showBottomSheet(message=getString(R.string.register_provide_email))
             } else {
+                hideKeyboard()
                 recoverAccount(email)
 
             }

@@ -73,5 +73,11 @@
     <string name="statement">Statement</string>
     <string name="update_info">Update info</string>
 
+    <!-- Mobile Recharge Fragments-->
+    <string name="recharge_value">Recharge value:</string>
+    <string name="recharge_success">Recharge successfully\ncompleted!</string>
+    <string name="credit_available_few_minutes">Your credit will be available in a few minutes.</string>
+    <string name="recharge_date">Recharge date:</string>
+    <string name="phone_number">Phone number:</string>
 
 </resources>

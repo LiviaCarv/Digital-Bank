@@ -14,6 +14,7 @@ import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentUserProfileBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,6 +86,7 @@ class UserProfileFragment : Fragment() {
             } else if (phoneNumber?.length != 11) {
                 showBottomSheet(message = getString(R.string.register_phone_number_invalid))
             } else {
+                hideKeyboard()
                 user?.name = name
                 user?.phone = phoneNumber
                 user?.let {

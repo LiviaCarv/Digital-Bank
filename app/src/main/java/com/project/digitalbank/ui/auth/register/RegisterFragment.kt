@@ -17,6 +17,7 @@ import com.project.digitalbank.ui.user_profile.UserProfileViewModel
 import com.project.digitalbank.ui.wallet.WalletViewModel
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,6 +74,7 @@ class RegisterFragment : Fragment() {
             } else if (confirmationPassword != password) {
                 showBottomSheet(message = getString(R.string.register_confirm_password_wrong))
             } else {
+                hideKeyboard()
                 val user = User(name, email, phoneNumber, password)
                 registerUser(name, email, phoneNumber, password)
             }

@@ -13,6 +13,7 @@ import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentLoginBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
+import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,6 +59,7 @@ class LoginFragment : Fragment() {
                 showBottomSheet(message =getString(R.string.register_provide_password))
 
             } else {
+                hideKeyboard()
                loginUser(email, password)
             }
 
