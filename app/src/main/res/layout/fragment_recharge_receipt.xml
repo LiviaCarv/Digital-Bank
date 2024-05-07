@@ -166,12 +166,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_recharge_value" />
 
 
-    <TextView
+    <com.vicmikhailau.maskededittext.MaskedEditText
         android:id="@+id/txt_show_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_between_elements_16dp"
         android:layout_marginVertical="@dimen/default_margin"
+        app:mask="(##) #####-####"
+        android:enabled="false"
         android:textColor="@color/black"
         android:textSize="@dimen/smaller_text_size_14sp"
         app:layout_constraintEnd_toEndOf="parent"

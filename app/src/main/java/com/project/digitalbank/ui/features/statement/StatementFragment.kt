@@ -48,6 +48,10 @@ class StatementFragment : Fragment() {
                     val action = StatementFragmentDirections.actionStatementFragmentToDepositReceiptFragment(it.id)
                     findNavController().navigate(action)
                 }
+                TransactionOperation.RECHARGE -> {
+                    val action = StatementFragmentDirections.actionStatementFragmentToRechargeReceiptFragment(it.id)
+                    findNavController().navigate(action)
+                }
                 else -> {}
             }
         }

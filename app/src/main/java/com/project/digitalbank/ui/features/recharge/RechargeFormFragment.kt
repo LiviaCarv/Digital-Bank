@@ -111,10 +111,9 @@ class RechargeFormFragment : Fragment() {
                 is StateView.Success -> {
                     stateView.data?.let {
                         StateView.Success(transaction)
-                        Toast.makeText(requireContext(), "TRANSACTION SAVED", Toast.LENGTH_SHORT).show()
                         binding.progressBar.isVisible = false
-//                        val action = RechargeFormFragmentDirections.actionRechargeFormFragmentToRechargeReceiptFragment(recharge.id)
-//                        findNavController().navigate(action)
+                        val action = RechargeFormFragmentDirections.actionRechargeFormFragmentToRechargeReceiptFragment(recharge.id)
+                        findNavController().navigate(action)
                     }
                 }
                 else -> {

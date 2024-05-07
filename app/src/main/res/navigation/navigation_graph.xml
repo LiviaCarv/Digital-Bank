@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_homeFragment_to_rechargeFormFragment"
             app:destination="@id/rechargeFormFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rechargeReceiptFragment"
+            app:destination="@id/rechargeReceiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -106,6 +109,9 @@
         <action
             android:id="@+id/action_statementFragment_to_depositReceiptFragment"
             app:destination="@id/depositReceiptFragment" />
+        <action
+            android:id="@+id/action_statementFragment_to_rechargeReceiptFragment"
+            app:destination="@id/rechargeReceiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -120,7 +126,9 @@
         tools:layout="@layout/fragment_recharge_form" >
         <action
             android:id="@+id/action_rechargeFormFragment_to_rechargeReceiptFragment"
-            app:destination="@id/rechargeReceiptFragment" />
+            app:destination="@id/rechargeReceiptFragment"
+            app:popUpTo="@id/rechargeFormFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/rechargeReceiptFragment"

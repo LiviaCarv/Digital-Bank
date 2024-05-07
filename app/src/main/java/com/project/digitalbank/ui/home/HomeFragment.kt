@@ -86,6 +86,10 @@ class HomeFragment : Fragment() {
                    val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(it.id)
                    findNavController().navigate(action)
                }
+               TransactionOperation.RECHARGE -> {
+                   val action = HomeFragmentDirections.actionHomeFragmentToRechargeReceiptFragment(it.id)
+                   findNavController().navigate(action)
+               }
                else -> {}
            }
         }

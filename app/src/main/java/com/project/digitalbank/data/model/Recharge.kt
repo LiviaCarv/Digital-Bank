@@ -9,7 +9,7 @@ data class Recharge(
     var id: String = "",
     var date: Long = 0L,
     var amount: Float = 0f,
-    var phoneNumber: String
+    var phoneNumber: String = ""
 ) : Parcelable {
     init {
         this.id = FirebaseDatabase.getInstance().reference.push().key ?: ""
