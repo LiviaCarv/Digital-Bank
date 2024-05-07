@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            app:title="Recover account">
+            app:title="Profile">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -29,7 +29,7 @@
                     style="@style/style_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_account" />
+                    android:text="@string/card_profile" />
 
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -117,7 +117,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_create_account"
+            android:id="@+id/btn_update_info"
             style="@style/style_material_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

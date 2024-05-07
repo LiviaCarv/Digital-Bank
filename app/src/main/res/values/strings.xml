@@ -49,6 +49,11 @@
     <string name="title_dialog_confirm_logout">Do you want to sign out of your account?</string>
     <string name="text_message_logout">Please confirm if you want to sign out.</string>
 
+    <!-- Home Fragment -->
+    <string name="title_dialog_confirm_changes">Do you want to change your profile information?</string>
+    <string name="text_message_changes">Please confirm if you want to change your profile information.</string>
+
+
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
     <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
