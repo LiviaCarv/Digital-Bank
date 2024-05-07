@@ -27,7 +27,7 @@
     <string name="register_provide_name">Please enter your name.</string>
     <string name="register_provide_email">Please provide a valid email address.</string>
     <string name="register_provide_password">Please enter a valid password.</string>
-    <string name="register_provide_phone">Please enter a valid phone number.</string>
+    <string name="register_provide_phone">Please enter the phone number.</string>
     <string name="register_confirm_password_wrong">Passwords do not match.</string>
     <string name="register_confirm_password_empty">Please confirm your password.</string>
     <string name="register_phone_number_invalid">Please enter a valid phone number.</string>
@@ -53,7 +53,6 @@
     <string name="title_dialog_confirm_changes">Do you want to change your profile information?</string>
     <string name="text_message_changes">Please confirm if you want to change your profile information.</string>
 
-
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
     <string name="auth_invalid_email">The e-mail address is incorrectly formatted.</string>
@@ -77,7 +76,10 @@
     <string name="recharge_value">Recharge value:</string>
     <string name="recharge_success">Recharge successfully\ncompleted!</string>
     <string name="credit_available_few_minutes">Your credit will be available in a few minutes.</string>
+    <string name="enter_the_value_to_be_recharged">Enter mobile recharge amount</string>
     <string name="recharge_date">Recharge date:</string>
     <string name="phone_number">Phone number:</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="register_provide_recharge_value">Please enter recharge value.</string>
 
 </resources>

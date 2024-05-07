@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         binding.cardStatement.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_statementFragment)
         }
+        binding.cardMobileRecharge.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_rechargeFormFragment)
+        }
         binding.btnShowAllActivities.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_statementFragment)
         }

@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_homeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rechargeFormFragment"
+            app:destination="@id/rechargeFormFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -110,4 +113,18 @@
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
     </fragment>
+    <fragment
+        android:id="@+id/rechargeFormFragment"
+        android:name="com.project.digitalbank.ui.features.recharge.RechargeFormFragment"
+        android:label="fragment_recharge_form"
+        tools:layout="@layout/fragment_recharge_form" >
+        <action
+            android:id="@+id/action_rechargeFormFragment_to_rechargeReceiptFragment"
+            app:destination="@id/rechargeReceiptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rechargeReceiptFragment"
+        android:name="com.project.digitalbank.ui.features.recharge.RechargeReceiptFragment"
+        android:label="fragment_recharge_receipt"
+        tools:layout="@layout/fragment_recharge_receipt" />
 </navigation>
