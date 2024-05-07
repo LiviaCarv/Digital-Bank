@@ -126,5 +126,9 @@
         android:id="@+id/rechargeReceiptFragment"
         android:name="com.project.digitalbank.ui.features.recharge.RechargeReceiptFragment"
         android:label="fragment_recharge_receipt"
-        tools:layout="@layout/fragment_recharge_receipt" />
+        tools:layout="@layout/fragment_recharge_receipt" >
+        <argument
+            android:name="idRecharge"
+            app:argType="string" />
+    </fragment>
 </navigation>

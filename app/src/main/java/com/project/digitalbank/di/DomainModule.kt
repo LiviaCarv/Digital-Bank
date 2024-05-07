@@ -4,6 +4,8 @@ import com.project.digitalbank.data.repository.auth.AuthFirebaseDataSource
 import com.project.digitalbank.data.repository.auth.AuthFirebaseDataSourceImpl
 import com.project.digitalbank.data.repository.deposit.DepositDataSource
 import com.project.digitalbank.data.repository.deposit.DepositDataSourceImpl
+import com.project.digitalbank.data.repository.recharge.RechargeDataSource
+import com.project.digitalbank.data.repository.recharge.RechargeDataSourceImpl
 import com.project.digitalbank.data.repository.transaction.TransactionDataSource
 import com.project.digitalbank.data.repository.transaction.TransactionDataSourceImpl
 import dagger.Binds
@@ -28,4 +30,9 @@ abstract class DomainModule {
     abstract fun bindsTransactionDataSource(
         transactionDataSourceImpl: TransactionDataSourceImpl
     ) : TransactionDataSource
+
+    @Binds
+    abstract fun bindsRechargeDataSource(
+        rechargeDataSourceImpl: RechargeDataSourceImpl
+    ) : RechargeDataSource
 }
