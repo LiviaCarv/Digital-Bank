@@ -69,6 +69,12 @@ dependencies {
     //masked edit text - https://github.com/VicMikhailau/MaskedEditText
     implementation("io.github.vicmikhailau:MaskedEditText:5.0.1")
 
+    // shaped image view - https://github.com/cheonjaeung/shapedimageview
+    implementation("io.woong.shapedimageview:shapedimageview:1.4.3")
+
+    // picasso library - https://github.com/square/picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

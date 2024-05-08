@@ -38,7 +38,7 @@
 
     <!-- Home Fragment -->
     <string name="text_account_balance_format">$ %1$s</string>
-    <string name="card_transfer">Transaction</string>
+    <string name="card_transfer">Transfer</string>
     <string name="card_profile">Profile</string>
     <string name="card_deposit">Deposit</string>
     <string name="card_mobile_recharge">Mobile Recharge</string>
