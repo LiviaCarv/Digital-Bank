@@ -4,6 +4,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.util.FirebaseHelper
 import javax.inject.Inject
@@ -11,7 +12,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class UserProfileDataSourceImpl @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase
-) : UserProfileDataSource{
+) : UserProfileDataSource {
 
 
     private val profileReference = firebaseDatabase.reference
@@ -20,7 +21,7 @@ class UserProfileDataSourceImpl @Inject constructor(
 
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
-           profileReference
+            profileReference
                 .setValue(user)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -37,19 +38,48 @@ class UserProfileDataSourceImpl @Inject constructor(
     override suspend fun getUserProfile(): User {
         return suspendCoroutine { continuation ->
             profileReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val userProfile = snapshot.getValue(User::class.java)
-                userProfile?.let {
-                    continuation.resumeWith(Result.success(it))
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val userProfile = snapshot.getValue(User::class.java)
+                    userProfile?.let {
+                        continuation.resumeWith(Result.success(it))
+                    }
                 }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                continuation.resumeWith(Result.failure(error.toException()))
 
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    continuation.resumeWith(Result.failure(error.toException()))
+
+                }
+            })
 
         }
     }
 
+    override suspend fun getProfilesList(): List<User> {
+        return suspendCoroutine { continuation ->
+            firebaseDatabase.reference
+                .child("profile")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val usersList = mutableListOf<User>()
+                        for (ds in snapshot.children) {
+                            val user = ds.getValue(User::class.java)
+                            if (user?.id != FirebaseHelper.getUserId()) {
+                                user?.let {
+                                    usersList.add(it)
+                                }
+                            }
+
+                        }
+                        continuation.resumeWith(Result.success(usersList))
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        continuation.resumeWith(Result.failure(error.toException()))
+
+                    }
+                })
+
+        }
+    }
 }

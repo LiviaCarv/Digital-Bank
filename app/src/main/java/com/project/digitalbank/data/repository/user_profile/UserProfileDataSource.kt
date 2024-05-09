@@ -7,4 +7,6 @@ interface UserProfileDataSource {
     suspend fun saveProfile(user: User)
 
     suspend fun getUserProfile() : User
+
+    suspend fun getProfilesList() : List<User>
 }

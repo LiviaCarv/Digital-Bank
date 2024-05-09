@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.TransferUserItemBinding
 import com.squareup.picasso.Picasso
@@ -51,11 +52,10 @@ class TransferAdapter(
     }
 
     private fun loadImage(holder: ViewHolder, user: User) {
-        if (user.imageProfile.isNotEmpty()) {
+        if (user.imageProfile != "") {
             Picasso
                 .get()
                 .load(user.imageProfile)
-                .centerCrop()
                 .into(holder.binding.imgUser)
         }
     }

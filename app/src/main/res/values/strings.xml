@@ -82,4 +82,7 @@
     <string name="enter_phone_number">Enter phone number</string>
     <string name="register_provide_recharge_value">Please enter recharge value.</string>
 
+    <!-- Transfer Fragments-->
+    <string name="transfer_user_list_title_toolbar">Users</string>
+
 </resources>

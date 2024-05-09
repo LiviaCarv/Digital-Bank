@@ -75,6 +75,9 @@ dependencies {
     // picasso library - https://github.com/square/picasso
     implementation("com.squareup.picasso:picasso:2.8")
 
+    // Ted permission - https://github.com/ParkSangGwon/TedPermission
+    implementation("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

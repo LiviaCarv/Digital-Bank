@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/margin_16dp">
+    android:paddingHorizontal="@dimen/margin_16dp">
 
     <io.woong.shapedimageview.CircleImageView
         android:id="@+id/img_user"
@@ -30,5 +30,14 @@
         app:layout_constraintStart_toEndOf="@+id/img_user"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="USER NAME" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

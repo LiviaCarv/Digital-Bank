@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_homeFragment_to_rechargeReceiptFragment"
             app:destination="@id/rechargeReceiptFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transferUserListFragment"
+            app:destination="@id/transferUserListFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -139,4 +142,9 @@
             android:name="idRecharge"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/transferUserListFragment"
+        android:name="com.project.digitalbank.ui.features.transfer.TransferUserListFragment"
+        android:label="fragment_transfer_user_list"
+        tools:layout="@layout/fragment_transfer_user_list" />
 </navigation>
