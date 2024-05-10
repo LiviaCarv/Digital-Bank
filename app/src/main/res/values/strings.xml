@@ -54,7 +54,9 @@
     <string name="text_message_changes">Please confirm if you want to change your profile information.</string>
     <string name="text_message_camera_permission_denied">We need this permission for capturing images through the camera. Please access the permission settings and enable it.</string>
     <string name="text_message_gallery_permission_denied">We need this permission to get images from your gallery. Please access the permission settings and enable it.</string>
-
+    <string name="text_select_options_input_image">Choose one of the options below to add a profile picture</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
@@ -87,5 +89,7 @@
 
     <!-- Transfer Fragments-->
     <string name="transfer_user_list_title_toolbar">Users</string>
+    <string name="profile_picture">Profile picture</string>
+
 
 </resources>

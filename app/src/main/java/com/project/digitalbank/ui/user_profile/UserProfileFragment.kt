@@ -21,11 +21,14 @@ import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentUserProfileBinding
+import com.project.digitalbank.databinding.LayoutBottomSheetBinding
+import com.project.digitalbank.databinding.LayoutBottomSheetImageProfileBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
@@ -63,7 +66,6 @@ class UserProfileFragment : Fragment() {
         initToolBar(binding.toolbar)
         getProfile()
         initListener()
-        checkPermissionCamera()
     }
 
     private fun initListener() {
@@ -72,13 +74,33 @@ class UserProfileFragment : Fragment() {
                 validateData()
             }
         }
+        binding.imgUserIcon.setOnClickListener{
+            showBottomSheet()
+        }
+    }
+
+    private fun showBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val binding: LayoutBottomSheetImageProfileBinding =
+            LayoutBottomSheetImageProfileBinding.inflate(layoutInflater, null, false)
+
+        binding.btnOpenCamera.setOnClickListener {
+            checkPermissionCamera()
+            bottomSheetDialog.dismiss()}
+
+        binding.btnOpenGallery.setOnClickListener {
+            checkPermissionGallery()
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.setContentView(binding.root)
+        bottomSheetDialog.show()
     }
 
     private fun checkPermissionCamera() {
 
         val permissionlistener: PermissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
-                Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
                 openCamera()
             }
 
@@ -109,7 +131,6 @@ class UserProfileFragment : Fragment() {
 
         val permissionlistener: PermissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
-                Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
                 openGallery()
             }
 
