@@ -55,6 +55,8 @@
 
             <ImageView
                 android:id="@+id/img_user_icon"
+                android:src="@drawable/ic_profile"
+                android:scaleType="centerCrop"
                 android:layout_width="@dimen/card_square_size"
                 android:layout_height="@dimen/card_square_size" />
 

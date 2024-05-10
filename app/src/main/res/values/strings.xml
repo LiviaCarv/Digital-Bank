@@ -49,9 +49,12 @@
     <string name="title_dialog_confirm_logout">Do you want to sign out of your account?</string>
     <string name="text_message_logout">Please confirm if you want to sign out.</string>
 
-    <!-- Home Fragment -->
+    <!-- Profile Fragment -->
     <string name="title_dialog_confirm_changes">Do you want to change your profile information?</string>
     <string name="text_message_changes">Please confirm if you want to change your profile information.</string>
+    <string name="text_message_camera_permission_denied">We need this permission for capturing images through the camera. Please access the permission settings and enable it.</string>
+    <string name="text_message_gallery_permission_denied">We need this permission to get images from your gallery. Please access the permission settings and enable it.</string>
+
 
     <!-- Firebase Authentication Errors -->
     <string name="auth_account_not_registered">Account not registered.</string>
