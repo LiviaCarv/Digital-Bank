@@ -16,6 +16,7 @@ import com.project.digitalbank.data.model.Deposit
 import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentDepositFormBinding
 import com.project.digitalbank.util.FirebaseHelper
+import com.project.digitalbank.util.MoneyTextWatcher
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
@@ -46,6 +47,9 @@ class DepositFormFragment : Fragment() {
     }
 
     private fun initListener() {
+        with(binding.edtTxtDepositValue) {
+            addTextChangedListener(MoneyTextWatcher(this))
+        }
         binding.btnConfirm.setOnClickListener { validateDeposit() }
     }
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.Dark"
     tools:context=".ui.features.deposit.DepositFormFragment">
 
     <ScrollView
@@ -77,11 +78,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_between_elements_16dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/white"
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
+                android:text="$ 0,00"
+                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:textSize="@dimen/title_text_size_20sp"
+                android:textSize="@dimen/text_size_30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_deposit_value" />
