@@ -14,12 +14,16 @@ import com.project.digitalbank.R
 import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Transaction
+import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentHomeBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.GetMask
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.showBottomSheet
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -40,6 +44,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getProfile()
         configRecyclerView()
         initListener()
         getTransactions()
@@ -64,6 +69,9 @@ class HomeFragment : Fragment() {
         }
         binding.cardTransaction.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_transferUserListFragment)
+        }
+        binding.imgUserIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_userProfileFragment)
         }
         logoutListener()
     }
@@ -102,6 +110,43 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun getProfile() {
+        homeViewModel.getUserProfile().observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                }
+
+                is StateView.Success -> {
+                    stateView.data?.let {
+                        configData(it)
+                    }
+                }
+
+                else -> {
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
+            }
+
+        }
+    }
+
+    private fun configData(user: User) {
+        binding.imgUserIcon.isVisible = true
+        Picasso
+            .get()
+            .load(user.imageProfile)
+            .fit().centerCrop()
+            .into(binding.imgUserIcon, object : Callback {
+                override fun onSuccess() {
+                    binding.imgUserIcon.isVisible = true
+                    binding.iconProgressBar.isVisible = false
+
+                }
+                override fun onError(e: Exception?) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
 
     private fun getTransactions() {
         homeViewModel.getTransactions().observe(viewLifecycleOwner) { stateView ->

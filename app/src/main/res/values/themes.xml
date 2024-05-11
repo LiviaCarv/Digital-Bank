@@ -6,6 +6,9 @@
         <item  name="colorPrimaryVariant">@color/color_default</item>
     </style>
 
+    <style name="Theme.Dark" parent="Theme.Material3.DayNight.NoActionBar" >
+        <item name="colorControlActivated">@color/white</item>
+    </style>
 
     <style name="Theme.DigitalBank" parent="Base.Theme.DigitalBank" />
 </resources>

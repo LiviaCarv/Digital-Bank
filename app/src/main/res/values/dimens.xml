@@ -13,5 +13,6 @@
     <dimen name="title_text_size_20sp">20sp</dimen>
     <dimen name="bigger_text_size_26sp">24sp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="text_size_30sp">30sp</dimen>
 
 </resources>
