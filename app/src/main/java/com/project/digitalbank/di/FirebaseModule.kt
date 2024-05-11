@@ -1,7 +1,9 @@
 package com.project.digitalbank.di
 
+import com.google.android.gms.auth.api.signin.internal.Storage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +23,12 @@ object FirebaseModule {
     @Provides
     fun provideFirebaseAuth() :  FirebaseAuth {
         return FirebaseAuth.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorage() :  FirebaseStorage {
+        return FirebaseStorage.getInstance()
     }
 
 

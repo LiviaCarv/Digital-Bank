@@ -49,12 +49,12 @@ dependencies {
 
     // firebase
     implementation(platform(libs.firebase.bom))
-
     //authentication
     implementation(libs.firebase.ui.auth)
-
     //realtime database
     implementation("com.google.firebase:firebase-database")
+    // Add the dependency for the Cloud Storage library
+    implementation("com.google.firebase:firebase-storage")
 
     // dependecy injection c hilt
     implementation(libs.hilt.android.v2481)
