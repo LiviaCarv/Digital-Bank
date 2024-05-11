@@ -34,6 +34,7 @@ import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.IOException
@@ -71,7 +72,11 @@ class UserProfileFragment : Fragment() {
     private fun initListener() {
         binding.btnUpdateInfo.setOnClickListener {
             if (user != null) {
-                validateData()
+                if (imageProfile != null) {
+                    saveProfileImage()
+                } else {
+                    validateData()
+                }
             }
         }
         binding.imgUserIcon.setOnClickListener{
@@ -89,6 +94,7 @@ class UserProfileFragment : Fragment() {
                     }
                     is StateView.Success -> {
                         binding.progressBar.isVisible = false
+                        saveProfile(stateView.data)
                     }
                     else -> {
                         binding.progressBar.isVisible = false
@@ -335,8 +341,13 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    private fun saveProfile() {
+    private fun saveProfile(urlImage: String? = null) {
         user?.let {
+
+            if (urlImage != null) {
+                it.imageProfile = urlImage
+            }
+
             userProfileViewModel.saveProfile(it).observe(viewLifecycleOwner) { stateView ->
                 when (stateView) {
                     is StateView.Loading -> {
@@ -375,10 +386,15 @@ class UserProfileFragment : Fragment() {
                 edtTextName.setText(it.name)
                 edtTextTelephone.setText(it.phone)
                 edtTextEmail.setText(it.email)
+                if (it.imageProfile != "") {
+                    Picasso
+                        .get()
+                        .load(it.imageProfile)
+                        .fit().centerCrop()
+                        .into(imgUserIcon)
+                }
             }
         }
-
-
     }
 
     override fun onDestroyView() {
