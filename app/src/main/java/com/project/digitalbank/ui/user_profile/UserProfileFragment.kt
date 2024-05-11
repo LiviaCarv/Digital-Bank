@@ -383,9 +383,6 @@ class UserProfileFragment : Fragment() {
     private fun configData() {
         user?.let {
             binding.apply {
-                edtTextName.setText(it.name)
-                edtTextTelephone.setText(it.phone)
-                edtTextEmail.setText(it.email)
                 if (it.imageProfile != "") {
                     Picasso
                         .get()
@@ -393,6 +390,10 @@ class UserProfileFragment : Fragment() {
                         .fit().centerCrop()
                         .into(imgUserIcon)
                 }
+                edtTextName.setText(it.name)
+                edtTextTelephone.setText(it.phone)
+                edtTextEmail.setText(it.email)
+
             }
         }
     }

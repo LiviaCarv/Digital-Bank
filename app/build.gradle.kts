@@ -78,6 +78,9 @@ dependencies {
     // Ted permission - https://github.com/ParkSangGwon/TedPermission
     implementation("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
 
+    // simple search view library - https://github.com/Ferfalk/SimpleSearchView
+    implementation("com.github.Ferfalk:SimpleSearchView:0.2.1")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

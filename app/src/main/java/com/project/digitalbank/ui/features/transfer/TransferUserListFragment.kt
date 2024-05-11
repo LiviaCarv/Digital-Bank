@@ -2,18 +2,22 @@ package com.project.digitalbank.ui.features.transfer
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentTransferUserListBinding
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class TransferUserListFragment : Fragment() {
@@ -22,6 +26,11 @@ class TransferUserListFragment : Fragment() {
     private val transferUserListViewModel: TransferUserListViewModel by viewModels()
     private lateinit var transferUserListAdapter: TransferAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +76,12 @@ class TransferUserListFragment : Fragment() {
 
 
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
+        val item = menu.findItem(R.id.action_search)
+        binding.searchView.setMenuItem(item)
     }
 
     override fun onDestroyView() {

@@ -35,4 +35,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/background_button</item>
     </style>
+
+    <style name="style_search_view">
+        <item name="colorSecondary">@color/white</item>
+        <item name="android:inputType">text</item>
+        <item name="hintColor">@color/color_default</item>
+        <item name="android:hint">@string/search_hint</item>
+        <item name="android:textColor">@color/color_default</item>
+    </style>
 </resources>

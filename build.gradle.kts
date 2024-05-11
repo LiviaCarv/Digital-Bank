@@ -1,8 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import org.gradle.api.initialization.resolve.RepositoriesMode
 
 buildscript {
     repositories {
         google()
+        mavenCentral()
+
     }
     dependencies {
         classpath(libs.androidx.navigation.safe.args.gradle.plugin)
