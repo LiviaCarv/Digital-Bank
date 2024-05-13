@@ -17,7 +17,6 @@ class MoneyTextWatcher(private val editText: EditText) : TextWatcher {
         val parsed: BigDecimal = parseToBigDecimal(s.toString())
         val formatted: String = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(parsed)
         editText.setText(formatted)
-        editText.setSelection(formatted.length)
         editText.addTextChangedListener(this)
     }
 
@@ -31,12 +30,23 @@ class MoneyTextWatcher(private val editText: EditText) : TextWatcher {
             NumberFormat.getCurrencyInstance(Locale("pt", "BR")).currency?.symbol ?: 0f
         )
         val cleanString = value.replace(replaceable.toRegex(), "")
-        return BigDecimal(cleanString).setScale(
-            2, BigDecimal.ROUND_FLOOR
-        ).divide(
-            BigDecimal(100), BigDecimal.ROUND_FLOOR
-        )
+
+        if (cleanString.isEmpty()) {
+            return BigDecimal.ZERO
+        }
+
+        return try {
+            BigDecimal(cleanString).setScale(
+                2, BigDecimal.ROUND_FLOOR
+            ).divide(
+                BigDecimal(100), BigDecimal.ROUND_FLOOR
+            )
+        } catch (e: NumberFormatException) {
+            e.printStackTrace()
+            BigDecimal.ZERO
+        }
     }
+
 
     companion object {
         fun getValueUnMasked(editText: EditText): Float {

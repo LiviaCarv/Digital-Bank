@@ -91,6 +91,7 @@
     <!-- Transfer Fragments-->
     <string name="transfer_user_list_title_toolbar">Users</string>
     <string name="profile_picture">Profile picture</string>
+    <string name="r_0_00">R$ 0,00</string>
 
 
 </resources>
