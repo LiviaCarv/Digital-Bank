@@ -159,7 +159,7 @@ class HomeFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    transactionsAdapter.submitList(stateView.data?.reversed()?.take(5))
+                    transactionsAdapter.submitList(stateView.data?.reversed()?.take(10))
                     configBalance(stateView.data ?: emptyList())
                 }
                 else -> {

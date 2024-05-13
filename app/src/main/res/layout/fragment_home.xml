@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/bigger_margin"
-                android:text="@string/last_5_activities"
+                android:text="@string/last_10_activities"
                 android:textColor="@color/white"
                 android:textSize="@dimen/smaller_text_size_14sp"
                 app:layout_constraintStart_toStartOf="@+id/txt_display_account_balance"

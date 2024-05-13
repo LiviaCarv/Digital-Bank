@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
@@ -18,6 +20,7 @@ import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.databinding.FragmentRechargeFormBinding
 import com.project.digitalbank.ui.features.deposit.DepositFormFragmentDirections
 import com.project.digitalbank.util.FirebaseHelper
+import com.project.digitalbank.util.MoneyTextWatcher
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
@@ -50,14 +53,31 @@ class RechargeFormFragment : Fragment() {
         binding.btnConfirm.setOnClickListener {
             validateData()
         }
+
+        with(binding.edtTxtRechargeValue) {
+            addTextChangedListener(MoneyTextWatcher(this))
+
+            addTextChangedListener {
+                if (MoneyTextWatcher.getValueUnMasked(this) > 101) {
+                    this.setText(context.getString(R.string.r_0_00))
+                }
+            }
+
+            doAfterTextChanged {
+                text?.length?.let {
+                    this.setSelection(it)
+                }
+            }
+
+        }
     }
 
     private fun validateData() {
         binding.apply {
-            val rechargeValue = edtTxtRechargeValue.text.toString().trim()
+            val rechargeValue = MoneyTextWatcher.getValueUnMasked(edtTxtRechargeValue)
             val phoneNumber = edtTxtPhoneNumber.unMaskedText
 
-            if (rechargeValue.isEmpty()) {
+            if (rechargeValue <= 5f) {
                 showBottomSheet(message = getString(R.string.register_provide_recharge_value))
             }  else if (phoneNumber?.isEmpty() == true) {
                 showBottomSheet(message = getString(R.string.register_provide_phone))
@@ -70,7 +90,7 @@ class RechargeFormFragment : Fragment() {
                 val recharge = Recharge(amount = rechargeValue.toFloat(), phoneNumber = phoneNumber)
 
                 saveRecharge(recharge)
-                Toast.makeText(requireContext(), "recharge saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Recharge completed.", Toast.LENGTH_SHORT).show()
                 }
             }
 

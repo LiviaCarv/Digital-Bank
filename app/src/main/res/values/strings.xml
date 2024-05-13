@@ -38,14 +38,14 @@
     <string name="recover_email_sent">E-mail sent.</string>
 
     <!-- Home Fragment -->
-    <string name="text_account_balance_format">$ %1$s</string>
+    <string name="text_account_balance_format">R$ %1$s</string>
     <string name="card_transfer">Transfer</string>
     <string name="card_profile">Profile</string>
     <string name="card_deposit">Deposit</string>
     <string name="card_mobile_recharge">Mobile Recharge</string>
     <string name="card_statement">Statement</string>
     <string name="title_account_balance">Account balance</string>
-    <string name="last_5_activities">Last 5 transactions</string>
+    <string name="last_10_activities">Last 10 transactions</string>
     <string name="see_all">See all</string>
     <string name="title_dialog_confirm_logout">Do you want to sign out of your account?</string>
     <string name="text_message_logout">Please confirm if you want to sign out.</string>
@@ -86,7 +86,7 @@
     <string name="recharge_date">Recharge date:</string>
     <string name="phone_number">Phone number:</string>
     <string name="enter_phone_number">Enter phone number</string>
-    <string name="register_provide_recharge_value">Please enter recharge value.</string>
+    <string name="register_provide_recharge_value">Please enter a value greater or equal to R$ 5,00.</string>
 
     <!-- Transfer Fragments-->
     <string name="transfer_user_list_title_toolbar">Users</string>

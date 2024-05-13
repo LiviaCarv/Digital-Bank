@@ -19,9 +19,7 @@ class TransactionsAdapter(
     private val transactionSelected: (Transaction) -> Unit
 ) : ListAdapter<Transaction, TransactionsAdapter.ViewHolder>(TransactionDiffCallback()) {
 
-    class ViewHolder(val binding: ItemTransactionBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class ViewHolder(val binding: ItemTransactionBinding) : RecyclerView.ViewHolder(binding.root)
 
     class TransactionDiffCallback : DiffUtil.ItemCallback<Transaction>() {
         override fun areItemsTheSame(oldItem: Transaction, newItem: Transaction): Boolean {
@@ -51,7 +49,7 @@ class TransactionsAdapter(
         holder.binding.apply {
             txtTransactionDate.text = GetMask.getFormattedDate(transaction.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
             txtTransactionDescription.text = transaction.operation?.toString() ?: "NULL"
-            txtTransactionValue.text = GetMask.getFormattedValue(transaction.value)
+            txtTransactionValue.text = context.getString(R.string.text_account_balance_format, GetMask.getFormattedValue(transaction.value))
             txtTransactionType.text = transaction.operation?.let { TransactionOperation.getType(it).toString() }
             txtTransactionType.backgroundTintList =
                 if (transaction.type == TransactionType.CASH_IN) {
