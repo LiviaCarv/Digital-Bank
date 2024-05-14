@@ -118,6 +118,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:visibility="invisible"
+                app:border_color="@color/white"
                 android:src="@drawable/ic_profile"
                 app:border_size="2dp"
                 tools:visibility="visible" />
@@ -147,10 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_between_elements_16dp"
             android:layout_marginVertical="@dimen/default_margin"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_between_elements_16dp"
             android:text="@string/deposit_value"
             android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size_16sp"
+            android:textSize="@dimen/title_text_size_20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_middle" />
 
@@ -161,7 +162,7 @@
             android:layout_marginHorizontal="@dimen/margin_between_elements_16dp"
             android:layout_marginVertical="@dimen/default_margin"
             android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size_16sp"
+            android:textSize="@dimen/title_text_size_20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_middle"
             tools:text="R$ 100" />

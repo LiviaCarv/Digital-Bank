@@ -52,11 +52,13 @@ class TransferAdapter(
     }
 
     private fun loadImage(holder: ViewHolder, user: User) {
-        if (user.imageProfile != "") {
+    if (user.imageProfile.isNotEmpty()) {
             Picasso
                 .get()
                 .load(user.imageProfile)
                 .into(holder.binding.imgUser)
+        } else {
+            holder.binding.imgUser.setImageResource(R.drawable.ic_user_place_holder)
         }
     }
 

@@ -42,23 +42,29 @@ class ConfirmTransferFragment : Fragment() {
     }
 
     private fun configData(user: User) {
-        binding.imgDestIcon.isVisible = true
         binding.txtUserTransfer.text = user.name
         binding.txtShowTransferValue.text = getString(R.string.text_account_balance_format, GetMask.getFormattedValue(args.amount))
-        Picasso
-            .get()
-            .load(user.imageProfile)
-            .tag(tagPicasso)
-            .fit().centerCrop()
-            .into(binding.imgDestIcon, object : Callback {
-                override fun onSuccess() {
-                    binding.imgDestIcon.isVisible = true
-                    binding.imgProgressBar.isVisible = false
-                }
-                override fun onError(e: Exception?) {
-                    TODO("Not yet implemented")
-                }
-            })
+        if (user.imageProfile.isNotEmpty()) {
+            Picasso
+                .get()
+                .load(user.imageProfile)
+                .tag(tagPicasso)
+                .fit().centerCrop()
+                .into(binding.imgDestIcon, object : Callback {
+                    override fun onSuccess() {
+                        binding.imgDestIcon.isVisible = true
+                        binding.imgProgressBar.isVisible = false
+                    }
+
+                    override fun onError(e: Exception?) {
+                        TODO("Not yet implemented")
+                    }
+                })
+        } else {
+            binding.imgDestIcon.setImageResource(R.drawable.ic_user_place_holder)
+            binding.imgDestIcon.isVisible = true
+            binding.imgProgressBar.isVisible = false
+        }
     }
 
     override fun onDestroyView() {

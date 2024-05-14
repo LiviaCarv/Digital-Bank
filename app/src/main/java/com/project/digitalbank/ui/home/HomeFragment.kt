@@ -133,21 +133,25 @@ class HomeFragment : Fragment() {
 
     private fun configData(user: User) {
         binding.imgUserIcon.isVisible = true
-        Picasso
-            .get()
-            .load(user.imageProfile)
-            .tag(tagPicasso)
-            .fit().centerCrop()
-            .into(binding.imgUserIcon, object : Callback {
-                override fun onSuccess() {
-                    binding.imgUserIcon.isVisible = true
-                    binding.iconProgressBar.isVisible = false
+       if (user.imageProfile.isNotEmpty()) {
+           Picasso
+               .get()
+               .load(user.imageProfile)
+               .tag(tagPicasso)
+               .fit().centerCrop()
+               .into(binding.imgUserIcon, object : Callback {
+                   override fun onSuccess() {
+                       binding.imgUserIcon.isVisible = true
+                       binding.iconProgressBar.isVisible = false
 
-                }
-                override fun onError(e: Exception?) {
-                    TODO("Not yet implemented")
-                }
-            })
+                   }
+                   override fun onError(e: Exception?) {
+                       TODO("Not yet implemented")
+                   }
+               })
+       } else {
+           binding.imgUserIcon.setImageResource(R.drawable.ic_user_place_holder)
+       }
     }
 
     private fun getTransactions() {
