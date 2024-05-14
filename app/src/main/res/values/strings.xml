@@ -65,7 +65,6 @@
     <string name="auth_invalid_password">The given password is invalid. Try again.</string>
     <string name="auth_email_already_registered">This e-mail is already registered.</string>
     <string name="auth_require_stronger_password">Please provide a stronger password.</string>
-    <string name="enter_the_value_to_be_deposited">Enter the value to be deposited</string>
 
     <!-- Deposit Fragments-->
     <string name="deposit_value">Deposit value:</string>
@@ -77,6 +76,8 @@
     <string name="receipt">Receipt</string>
     <string name="statement">Statement</string>
     <string name="update_info">Update info</string>
+    <string name="enter_the_value_to_be_deposited">Enter the value to be deposited</string>
+
 
     <!-- Mobile Recharge Fragments-->
     <string name="recharge_value">Recharge value:</string>
@@ -92,6 +93,11 @@
     <string name="transfer_user_list_title_toolbar">Users</string>
     <string name="profile_picture">Profile picture</string>
     <string name="r_0_00">R$ 0,00</string>
+    <string name="enter_the_value_to_be_transferred">Enter the value to be transferred</string>
+    <string name="transfer_value">Transfer value:</string>
+    <string name="confirm_transfer">Confirm the transfer details.</string>
+    <string name="after_completed">After completing the transfer,\nit will not be possible to undo it.</string>
+    <string name="transfer_to">Transfer to:</string>
 
 
 </resources>

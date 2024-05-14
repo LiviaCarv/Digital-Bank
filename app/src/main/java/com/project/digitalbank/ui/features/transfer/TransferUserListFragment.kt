@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
@@ -101,7 +102,8 @@ class TransferUserListFragment : Fragment() {
 
     private fun configRecyclerView() {
         transferUserListAdapter = TransferAdapter(requireContext()) { userSelected ->
-            Toast.makeText(requireContext(), userSelected.name, Toast.LENGTH_SHORT).show()
+            val action = TransferUserListFragmentDirections.actionTransferUserListFragmentToTransferFormFragment(userSelected)
+            findNavController().navigate(action)
         }
 
         with(binding.recyclerViewUsersList) {

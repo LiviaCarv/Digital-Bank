@@ -1,14 +1,12 @@
-package com.project.digitalbank.ui.features.deposit
+package com.project.digitalbank.ui.features.transfer
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,7 +15,8 @@ import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Deposit
 import com.project.digitalbank.data.model.Transaction
-import com.project.digitalbank.databinding.FragmentDepositFormBinding
+import com.project.digitalbank.databinding.FragmentTransferFormBinding
+import com.project.digitalbank.ui.features.deposit.DepositViewModel
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.MoneyTextWatcher
 import com.project.digitalbank.util.StateView
@@ -27,9 +26,9 @@ import com.project.digitalbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DepositFormFragment : Fragment() {
+class TransferFormFragment : Fragment() {
 
-    private var _binding: FragmentDepositFormBinding? = null
+    private var _binding: FragmentTransferFormBinding? = null
     private val binding get() = _binding!!
     private val depositViewModel: DepositViewModel by viewModels()
 
@@ -39,7 +38,7 @@ class DepositFormFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDepositFormBinding.inflate(inflater, container, false)
+        _binding = FragmentTransferFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,11 +49,11 @@ class DepositFormFragment : Fragment() {
     }
 
     private fun initListener() {
-        with(binding.edtTxtDepositValue) {
+        with(binding.edtTxtTransferValue) {
             addTextChangedListener(MoneyTextWatcher(this))
 
             addTextChangedListener {
-                if (MoneyTextWatcher.getValueUnMasked(this) > 10_000f) {
+                if (MoneyTextWatcher.getValueUnMasked(this) > 10_000F) {
                     this.setText(context.getString(R.string.r_0_00))
                 }
             }
@@ -66,18 +65,18 @@ class DepositFormFragment : Fragment() {
             }
 
         }
-        binding.btnConfirm.setOnClickListener { validateDeposit() }
+        binding.btnConfirm.setOnClickListener { validateAmount() }
     }
 
-    private fun validateDeposit() {
-        val value = MoneyTextWatcher.getValueUnMasked(binding.edtTxtDepositValue)
+    private fun validateAmount() {
+        val value = MoneyTextWatcher.getValueUnMasked(binding.edtTxtTransferValue)
 
         if (value > 0f) {
             hideKeyboard()
-            val deposit = Deposit(value=value.toFloat())
-            saveDeposit(deposit)
+
+
         } else {
-            showBottomSheet(message = "Insert a deposit value.")
+            showBottomSheet(message = "Insert a transfer value.")
         }
     }
 
@@ -117,8 +116,8 @@ class DepositFormFragment : Fragment() {
                     stateView.data?.let {
                         StateView.Success(transaction)
                         binding.progressBar.isVisible = false
-                        val action = DepositFormFragmentDirections.actionDepositFormFragmentToDepositReceiptFragment(deposit.id)
-                        findNavController().navigate(action)
+//                        val action = FragmentTransferFormBinding.actionDepositFormFragmentToDepositReceiptFragment(deposit.id)
+//                        findNavController().navigate(action)
                     }
                 }
                 else -> {

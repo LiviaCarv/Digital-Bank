@@ -6,5 +6,7 @@
     <color name="darker_green">#47A613</color>
     <color name="color_default_icons">#87E454</color>
     <color name="red_cash_out">#EE0406</color>
+    <color name="gray">#7A7A7A</color>
+
 
 </resources>
