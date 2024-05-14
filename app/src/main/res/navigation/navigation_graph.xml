@@ -159,5 +159,22 @@
         <argument
             android:name="user"
             app:argType="com.project.digitalbank.data.model.User" />
+        <action
+            android:id="@+id/action_transferFormFragment_to_confirmTransferFragment"
+            app:destination="@id/confirmTransferFragment"
+
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmTransferFragment"
+        android:name="com.project.digitalbank.ui.features.transfer.ConfirmTransferFragment"
+        android:label="fragment_confirm_transfer"
+        tools:layout="@layout/fragment_confirm_transfer" >
+        <argument
+            android:name="user"
+            app:argType="com.project.digitalbank.data.model.User" />
+        <argument
+            android:name="amount"
+            app:argType="float" />
     </fragment>
 </navigation>
