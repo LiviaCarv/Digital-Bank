@@ -33,7 +33,6 @@ class DepositFormFragment : Fragment() {
     private val binding get() = _binding!!
     private val depositViewModel: DepositViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -129,7 +128,6 @@ class DepositFormFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

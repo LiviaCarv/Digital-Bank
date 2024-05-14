@@ -176,5 +176,19 @@
         <argument
             android:name="amount"
             app:argType="float" />
+        <action
+            android:id="@+id/action_confirmTransferFragment_to_transferReceiptFragment"
+            app:destination="@id/transferReceiptFragment"
+            app:popUpTo="@id/transferFormFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/transferReceiptFragment"
+        android:name="com.project.digitalbank.ui.features.transfer.receipt.TransferReceiptFragment"
+        android:label="fragment_transfer_receipt"
+        tools:layout="@layout/fragment_transfer_receipt" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
     </fragment>
 </navigation>
