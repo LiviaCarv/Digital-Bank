@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
+import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
@@ -68,5 +69,19 @@ class TransactionDataSourceImpl @Inject constructor(
                 }
             })
         }
+    }
+
+    override suspend fun getBalance(): Float {
+        var balance = 0f
+        val transactionsList = getTransactions()
+        for (transaction in transactionsList) {
+            if (transaction.type == TransactionType.CASH_IN) {
+                balance += transaction.value
+            } else {
+                balance -= transaction.value
+            }
+        }
+
+        return balance
     }
 }

@@ -1,4 +1,4 @@
-package com.project.digitalbank.ui.features.transfer
+package com.project.digitalbank.ui.features.transfer.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

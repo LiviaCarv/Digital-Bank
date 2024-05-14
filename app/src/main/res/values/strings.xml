@@ -98,6 +98,7 @@
     <string name="confirm_transfer">Confirm the transfer details.</string>
     <string name="after_completed">After completing the transfer,\nit will not be possible to undo it.</string>
     <string name="transfer_to">Transfer to:</string>
+    <string name="insufficient_balance_to_make_transfer">Insufficient balance to make transfer</string>
 
 
 </resources>

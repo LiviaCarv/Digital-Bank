@@ -1,4 +1,4 @@
-package com.project.digitalbank.ui.features.transfer
+package com.project.digitalbank.ui.features.transfer.list
 
 import android.content.Context
 import android.view.LayoutInflater

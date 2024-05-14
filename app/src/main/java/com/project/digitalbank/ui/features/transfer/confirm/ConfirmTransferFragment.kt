@@ -1,30 +1,36 @@
-package com.project.digitalbank.ui.features.transfer
+package com.project.digitalbank.ui.features.transfer.confirm
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentConfirmTransferBinding
-import com.project.digitalbank.databinding.FragmentDepositReceiptBinding
+import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.GetMask
+import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.initToolBar
+import com.project.digitalbank.util.showBottomSheet
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import java.lang.Exception
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ConfirmTransferFragment : Fragment() {
-
 
     private var _binding: FragmentConfirmTransferBinding? = null
     private val binding get() = _binding!!
+    private val confirmTransferViewModel: ConfirmTransferViewModel by viewModels()
     private val args: ConfirmTransferFragmentArgs by navArgs()
     private val tagPicasso = "tagPicasso"
-
+    private var currentBalance: Float = 0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +44,25 @@ class ConfirmTransferFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initToolBar(binding.toolbar, homeAsUpEnabled = true)
         configData(args.user)
+        getBalance()
+        initListener()
 
+    }
+
+    private fun initListener() {
+        binding.btnConfirm.setOnClickListener {
+            if (currentBalance < args.amount) {
+                showBottomSheet(message = getString(R.string.insufficient_balance_to_make_transfer), onClick = { findNavController().popBackStack() })
+            } else {
+                Toast.makeText(requireContext(), "top show", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun configData(user: User) {
         binding.txtUserTransfer.text = user.name
-        binding.txtShowTransferValue.text = getString(R.string.text_account_balance_format, GetMask.getFormattedValue(args.amount))
+        binding.txtShowTransferValue.text =
+            getString(R.string.text_account_balance_format, GetMask.getFormattedValue(args.amount))
         if (user.imageProfile.isNotEmpty()) {
             Picasso
                 .get()
@@ -64,6 +83,24 @@ class ConfirmTransferFragment : Fragment() {
             binding.imgDestIcon.setImageResource(R.drawable.ic_user_place_holder)
             binding.imgDestIcon.isVisible = true
             binding.imgProgressBar.isVisible = false
+        }
+    }
+
+    private fun getBalance() {
+        confirmTransferViewModel.getBalance().observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+                is StateView.Success -> {
+                    currentBalance = stateView.data ?: 0f
+                }
+                else -> {
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
+            }
+
+
         }
     }
 
