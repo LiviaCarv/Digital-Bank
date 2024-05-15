@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.digitalbank.R
+import com.project.digitalbank.data.model.Transfer
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentConfirmTransferBinding
 import com.project.digitalbank.util.FirebaseHelper
@@ -30,7 +31,6 @@ class ConfirmTransferFragment : Fragment() {
     private val confirmTransferViewModel: ConfirmTransferViewModel by viewModels()
     private val args: ConfirmTransferFragmentArgs by navArgs()
     private val tagPicasso = "tagPicasso"
-    private var currentBalance: Float = 0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,17 +44,84 @@ class ConfirmTransferFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initToolBar(binding.toolbar, homeAsUpEnabled = true)
         configData(args.user)
-        getBalance()
         initListener()
 
     }
 
     private fun initListener() {
         binding.btnConfirm.setOnClickListener {
-            if (currentBalance < args.amount) {
-                showBottomSheet(message = getString(R.string.insufficient_balance_to_make_transfer), onClick = { findNavController().popBackStack() })
-            } else {
-                Toast.makeText(requireContext(), "top show", Toast.LENGTH_SHORT).show()
+            getBalance()
+        }
+    }
+
+    private fun getBalance() {
+        confirmTransferViewModel.getBalance().observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is StateView.Success -> {
+                    val currentBalance = stateView.data ?: 0f
+                    if (currentBalance < args.amount) {
+                        showBottomSheet(
+                            message = getString(R.string.insufficient_balance_to_make_transfer),
+                            onClick = { findNavController().popBackStack() })
+                    } else {
+                        val transfer = Transfer(
+                            idUserRecipient = args.user.id,
+                            idUserSender = FirebaseHelper.getUserId(),
+                            value = args.amount
+                        )
+                        saveTransfer(transfer)
+                    }
+                }
+
+                else -> {
+                    binding.progressBar.isVisible = false
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
+            }
+        }
+    }
+
+    private fun saveTransfer(transfer: Transfer) {
+        confirmTransferViewModel.saveTransfer(transfer).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.btnConfirm.isEnabled = false
+                }
+
+                is StateView.Success -> {
+                    binding.btnConfirm.isEnabled = true
+                    binding.progressBar.isVisible = false
+                    updateTransfer(transfer)
+                }
+
+                else -> {
+                    binding.progressBar.isVisible = false
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
+            }
+        }
+    }
+
+    private fun updateTransfer(transfer: Transfer) {
+        confirmTransferViewModel.updateTransfer(transfer).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.btnConfirm.isEnabled = false
+                }
+
+                is StateView.Success -> {
+                    binding.btnConfirm.isEnabled = true
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), "Tudo certo", Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {
+                    binding.progressBar.isVisible = false
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
             }
         }
     }
@@ -86,23 +153,6 @@ class ConfirmTransferFragment : Fragment() {
         }
     }
 
-    private fun getBalance() {
-        confirmTransferViewModel.getBalance().observe(viewLifecycleOwner) { stateView ->
-            when(stateView) {
-                is StateView.Loading -> {
-
-                }
-                is StateView.Success -> {
-                    currentBalance = stateView.data ?: 0f
-                }
-                else -> {
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
-                }
-            }
-
-
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

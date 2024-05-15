@@ -73,7 +73,7 @@ class DepositFormFragment : Fragment() {
 
         if (value > 0f) {
             hideKeyboard()
-            val deposit = Deposit(value=value.toFloat())
+            val deposit = Deposit(value=value)
             saveDeposit(deposit)
         } else {
             showBottomSheet(message = "Insert a deposit value.")

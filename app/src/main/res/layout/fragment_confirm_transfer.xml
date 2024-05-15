@@ -167,6 +167,17 @@
             app:layout_constraintTop_toBottomOf="@+id/divider_middle"
             tools:text="R$ 100" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/color_default"
+            app:layout_constraintEnd_toEndOf="@+id/app_bar_layout"
+            app:layout_constraintStart_toStartOf="@+id/app_bar_layout"
+            app:layout_constraintTop_toBottomOf="@+id/txt_transfer_value" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
@@ -179,7 +190,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_transfer_value" />
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
