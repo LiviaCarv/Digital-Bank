@@ -5,7 +5,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
+import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
+import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.data.model.Transfer
 import com.project.digitalbank.util.FirebaseHelper
 import javax.inject.Inject
@@ -17,6 +19,9 @@ class TransferDataSourceImpl @Inject constructor(
 
     private val transferReference = firebaseDatabase.reference
         .child("transfer")
+
+    private val transactionReference = firebaseDatabase.reference
+        .child("transaction")
 
     override suspend fun saveTransfer(transfer: Transfer): Transfer {
         return suspendCoroutine { continuation ->
@@ -103,6 +108,91 @@ class TransferDataSourceImpl @Inject constructor(
                         continuation.resumeWith(Result.failure(error.toException()))
                     }
                 })
+        }
+    }
+
+    override suspend fun saveTransferTransaction(transfer: Transfer) {
+        return suspendCoroutine { continuation ->
+
+            val transactionSender = Transaction(
+                id = transfer.id,
+                date = transfer.date,
+                value = transfer.value,
+                type = TransactionType.CASH_OUT,
+                operation = TransactionOperation.TRANSFER
+            )
+
+            val transactionRecipient = Transaction(
+                id = transfer.id,
+                date = transfer.date,
+                value = transfer.value,
+                type = TransactionType.CASH_IN,
+                operation = TransactionOperation.TRANSFER
+            )
+
+            transactionReference
+                .child(transfer.idUserSender)
+                .child(transfer.id)
+                .setValue(transactionSender)
+                .addOnCompleteListener { taskSender ->
+                    if (taskSender.isSuccessful) {
+
+                        transactionReference
+                            .child(transfer.idUserRecipient)
+                            .child(transfer.id)
+                            .setValue(transactionRecipient)
+                            .addOnCompleteListener { taskRecipient ->
+                                if (taskRecipient.isSuccessful) {
+
+                                    continuation.resumeWith(Result.success(Unit))
+                                } else {
+                                    taskRecipient.exception?.let {
+                                        continuation.resumeWith(Result.failure(it))
+                                    }
+                                }
+                            }
+
+                    } else {
+                        taskSender.exception?.let {
+                            continuation.resumeWith(Result.failure(it))
+                        }
+                    }
+                }
+        }
+    }
+
+    override suspend fun updateTransferTransaction(transfer: Transfer) {
+        return suspendCoroutine { continuation ->
+            transactionReference
+                .child(transfer.idUserSender)
+                .child(transfer.id)
+                .child("date")
+                .setValue(ServerValue.TIMESTAMP)
+                .addOnCompleteListener { taskSender ->
+                    if (taskSender.isSuccessful) {
+                        transactionReference
+                            .child(transfer.idUserRecipient)
+                            .child(transfer.id)
+                            .child("date")
+                            .setValue(ServerValue.TIMESTAMP)
+                            .addOnCompleteListener { taskRecipient ->
+                                if (taskRecipient.isSuccessful) {
+                                    continuation.resumeWith(Result.success(Unit))
+                                } else {
+                                    taskRecipient.exception?.let {
+                                        continuation.resumeWith(Result.failure(it))
+                                    }
+                                }
+                            }
+
+
+                    } else {
+                        taskSender.exception?.let {
+                            continuation.resumeWith(Result.failure(it))
+                        }
+                    }
+                }
+
         }
     }
 }

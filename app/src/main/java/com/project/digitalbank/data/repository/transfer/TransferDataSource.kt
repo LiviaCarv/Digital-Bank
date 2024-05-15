@@ -10,4 +10,8 @@ interface TransferDataSource {
 
     suspend fun getTransfer(transferID: String) : Transfer
 
+    suspend fun saveTransferTransaction(transfer: Transfer)
+
+    suspend fun updateTransferTransaction(transfer: Transfer)
+
 }

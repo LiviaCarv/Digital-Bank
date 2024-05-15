@@ -99,7 +99,8 @@
     <string name="transfer_to">Transfer to:</string>
     <string name="transfer_completed">Transfer completed\nsuccessfully!</string>
     <string name="debit_successfully_processed">Debit successfully processed, the credit forecast\nin the destination account is up to 30 minutes.</string>
-    <string name="insufficient_balance_to_make_transfer">Insufficient balance to make transfer</string>
+    <string name="insufficient_balance_to_make_transfer">Insufficient balance to make transfer.</string>
     <string name="received_transfer">Received the transfer:</string>
     <string name="transfer_confirmation">Confirm Transfer</string>
+    <string name="redefine_amount">Redefine Amount</string>
 </resources>

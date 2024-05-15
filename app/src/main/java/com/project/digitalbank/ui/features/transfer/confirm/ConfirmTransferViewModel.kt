@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.project.digitalbank.data.model.Transfer
 import com.project.digitalbank.domain.transaction.GetBalanceUseCase
+import com.project.digitalbank.domain.transfer.SaveTransferTransactionUseCase
 import com.project.digitalbank.domain.transfer.SaveTransferUseCase
+import com.project.digitalbank.domain.transfer.UpdateTransferTransactionUseCase
 import com.project.digitalbank.domain.transfer.UpdateTransferUseCase
 import com.project.digitalbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +17,9 @@ import javax.inject.Inject
 class ConfirmTransferViewModel @Inject constructor(
     private val getBalanceUseCase: GetBalanceUseCase,
     private val saveTransferUseCase: SaveTransferUseCase,
-    private val updateTransferUseCase: UpdateTransferUseCase
+    private val updateTransferUseCase: UpdateTransferUseCase,
+    private val saveTransferTransactionUseCase: SaveTransferTransactionUseCase,
+    private val updateTransferTransactionUseCase: UpdateTransferTransactionUseCase
 ) : ViewModel() {
 
     fun getBalance() = liveData(Dispatchers.IO) {
@@ -54,5 +58,29 @@ class ConfirmTransferViewModel @Inject constructor(
             emit(StateView.Error(exception.message))
         }
     }
+
+    fun saveTransferTransaction(transfer: Transfer) = liveData(Dispatchers.IO) {
+        try {
+            emit(StateView.Loading())
+
+            saveTransferTransactionUseCase.invoke(transfer)
+
+            emit(StateView.Success(Unit))
+        } catch (exception: Exception) {
+            emit(StateView.Error(exception.message))
+        }
+    }
+    fun updateTransferTransaction(transfer: Transfer) = liveData(Dispatchers.IO) {
+        try {
+            emit(StateView.Loading())
+
+            updateTransferTransactionUseCase.invoke(transfer)
+
+            emit(StateView.Success(Unit))
+        } catch (exception: Exception) {
+            emit(StateView.Error(exception.message))
+        }
+    }
+
 }
 

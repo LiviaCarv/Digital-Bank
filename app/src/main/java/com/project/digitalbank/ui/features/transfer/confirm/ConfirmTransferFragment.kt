@@ -11,10 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.digitalbank.R
+import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
+import com.project.digitalbank.data.model.Deposit
+import com.project.digitalbank.data.model.Transaction
 import com.project.digitalbank.data.model.Transfer
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentConfirmTransferBinding
+import com.project.digitalbank.ui.features.deposit.DepositFormFragmentDirections
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.GetMask
 import com.project.digitalbank.util.StateView
@@ -64,8 +68,10 @@ class ConfirmTransferFragment : Fragment() {
                 is StateView.Success -> {
                     val currentBalance = stateView.data ?: 0f
                     if (currentBalance < args.amount) {
+                        binding.progressBar.isVisible = false
                         showBottomSheet(
                             message = getString(R.string.insufficient_balance_to_make_transfer),
+                            titleButton = R.string.redefine_amount,
                             onClick = { findNavController().popBackStack() })
                     } else {
                         val transfer = Transfer(
@@ -89,12 +95,9 @@ class ConfirmTransferFragment : Fragment() {
         confirmTransferViewModel.saveTransfer(transfer).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.btnConfirm.isEnabled = false
                 }
 
                 is StateView.Success -> {
-                    binding.btnConfirm.isEnabled = true
-                    binding.progressBar.isVisible = false
                     updateTransfer(transfer)
                 }
 
@@ -110,7 +113,41 @@ class ConfirmTransferFragment : Fragment() {
         confirmTransferViewModel.updateTransfer(transfer).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.btnConfirm.isEnabled = false
+                }
+
+                is StateView.Success -> {
+                  saveTransaction(transfer)
+                }
+
+                else -> {
+                    binding.progressBar.isVisible = false
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                }
+            }
+        }
+    }
+
+    private fun saveTransaction(transfer: Transfer) {
+
+        confirmTransferViewModel.saveTransferTransaction(transfer).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {}
+                is StateView.Success -> {
+                    updateTransferTransaction(transfer)
+                }
+                else -> {
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
+                    binding.progressBar.isVisible = false
+
+                }
+            }
+        }
+    }
+
+    private fun updateTransferTransaction(transfer: Transfer) {
+        confirmTransferViewModel.updateTransferTransaction(transfer).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
                 }
 
                 is StateView.Success -> {
@@ -127,6 +164,7 @@ class ConfirmTransferFragment : Fragment() {
             }
         }
     }
+
 
     private fun configData(user: User) {
         binding.txtUserTransfer.text = user.name
