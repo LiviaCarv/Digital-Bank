@@ -7,4 +7,7 @@ interface TransferDataSource {
     suspend fun saveTransfer(transfer: Transfer) : Transfer
 
     suspend fun updateTransfer(transfer: Transfer)
+
+    suspend fun getTransfer(transferID: String) : Transfer
+
 }

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.digitalbank.R
+import com.project.digitalbank.data.enum.TransactionType
 import com.project.digitalbank.data.model.Transfer
 import com.project.digitalbank.data.model.User
 import com.project.digitalbank.databinding.FragmentConfirmTransferBinding
@@ -70,7 +71,7 @@ class ConfirmTransferFragment : Fragment() {
                         val transfer = Transfer(
                             idUserRecipient = args.user.id,
                             idUserSender = FirebaseHelper.getUserId(),
-                            value = args.amount
+                            value = args.amount,
                         )
                         saveTransfer(transfer)
                     }
@@ -115,7 +116,8 @@ class ConfirmTransferFragment : Fragment() {
                 is StateView.Success -> {
                     binding.btnConfirm.isEnabled = true
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), "Tudo certo", Toast.LENGTH_SHORT).show()
+                    val action = ConfirmTransferFragmentDirections.actionConfirmTransferFragmentToTransferReceiptFragment(transfer.id)
+                    findNavController().navigate(action)
                 }
 
                 else -> {

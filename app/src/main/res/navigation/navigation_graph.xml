@@ -179,7 +179,7 @@
         <action
             android:id="@+id/action_confirmTransferFragment_to_transferReceiptFragment"
             app:destination="@id/transferReceiptFragment"
-            app:popUpTo="@id/transferFormFragment"
+            app:popUpTo="@id/transferUserListFragment"
             app:popUpToInclusive="true"/>
     </fragment>
     <fragment
@@ -188,7 +188,7 @@
         android:label="fragment_transfer_receipt"
         tools:layout="@layout/fragment_transfer_receipt" >
         <argument
-            android:name="userId"
+            android:name="transferId"
             app:argType="string" />
     </fragment>
 </navigation>

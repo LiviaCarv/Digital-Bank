@@ -6,6 +6,7 @@ import com.project.digitalbank.data.model.User
 import com.project.digitalbank.domain.user_profile.GetUserProfileUseCase
 import com.project.digitalbank.domain.user_profile.SaveImageProfileUseCase
 import com.project.digitalbank.domain.user_profile.SaveProfileUseCase
+import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ class UserProfileViewModel @Inject constructor(
     fun getUserProfile () = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
-            val user = getUserProfileUseCase.invoke()
+            val user = getUserProfileUseCase.invoke(FirebaseHelper.getUserId())
             emit(StateView.Success(user))
         } catch (exception: Exception) {
             emit(StateView.Error(exception.message))

@@ -19,7 +19,6 @@ class UserProfileDataSourceImpl @Inject constructor(
 
     private val profileDataBaseReference = firebaseDatabase.reference
         .child("profile")
-        .child(FirebaseHelper.getUserId())
 
     private val profileStorageReference = storage.reference
         .child("images")
@@ -28,6 +27,7 @@ class UserProfileDataSourceImpl @Inject constructor(
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
             profileDataBaseReference
+                .child(FirebaseHelper.getUserId())
                 .setValue(user)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -41,9 +41,11 @@ class UserProfileDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserProfile(): User {
+    override suspend fun getUserProfile(id: String): User {
         return suspendCoroutine { continuation ->
-            profileDataBaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            profileDataBaseReference
+                .child(id)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val userProfile = snapshot.getValue(User::class.java)
                     userProfile?.let {

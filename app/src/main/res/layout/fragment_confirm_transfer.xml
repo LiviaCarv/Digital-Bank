@@ -28,7 +28,7 @@
                     style="@style/style_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/receipt"
+                    android:text="@string/transfer_confirmation"
                     android:textColor="@color/color_default" />
 
             </com.google.android.material.appbar.MaterialToolbar>

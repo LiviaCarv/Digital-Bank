@@ -101,4 +101,5 @@
     <string name="debit_successfully_processed">Debit successfully processed, the credit forecast\nin the destination account is up to 30 minutes.</string>
     <string name="insufficient_balance_to_make_transfer">Insufficient balance to make transfer</string>
     <string name="received_transfer">Received the transfer:</string>
+    <string name="transfer_confirmation">Confirm Transfer</string>
 </resources>
