@@ -123,6 +123,8 @@ class TransferReceiptFragment : Fragment() {
             binding.imgDestIcon.isVisible = true
             binding.imgProgressBar.isVisible = false
         }
+
+
         binding.txtUserTransfer.text = user.name
 
     }
@@ -136,6 +138,13 @@ class TransferReceiptFragment : Fragment() {
                 R.string.text_account_balance_format,
                 GetMask.getFormattedValue(transfer.value)
             )
+
+        if (transfer.type == TransactionType.CASH_IN ) {
+            binding.txtTransferTo.setText(R.string.transfer_made_by)
+            binding.debitSuccess.isVisible  = false
+        } else {
+            binding.txtTransferTo.setText(R.string.received_transfer)
+        }
 
     }
 

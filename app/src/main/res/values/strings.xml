@@ -103,4 +103,6 @@
     <string name="received_transfer">Received the transfer:</string>
     <string name="transfer_confirmation">Confirm Transfer</string>
     <string name="redefine_amount">Redefine Amount</string>
+    <string name="transfer_made_by">Transfer made by:</string>
+
 </resources>

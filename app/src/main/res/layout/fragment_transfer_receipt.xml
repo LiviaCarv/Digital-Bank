@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/bigger_margin"
             android:layout_marginTop="12dp"
-            android:text="@string/received_transfer"
+            tools:text="@string/received_transfer"
             android:textSize="@dimen/default_text_size_16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
