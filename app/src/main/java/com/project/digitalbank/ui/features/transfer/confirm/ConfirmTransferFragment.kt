@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.project.digitalbank.NavigationGraphDirections
 import com.project.digitalbank.R
 import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
@@ -153,7 +154,7 @@ class ConfirmTransferFragment : Fragment() {
                 is StateView.Success -> {
                     binding.btnConfirm.isEnabled = true
                     binding.progressBar.isVisible = false
-                    val action = ConfirmTransferFragmentDirections.actionConfirmTransferFragmentToTransferReceiptFragment(transfer.id)
+                    val action =  NavigationGraphDirections.actionGlobalTransferReceiptFragment(transfer.id)
                     findNavController().navigate(action)
                 }
 

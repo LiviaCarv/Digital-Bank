@@ -9,18 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.project.digitalbank.ui.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_authentication"
-            app:destination="@id/authentication"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_splash" />
     <navigation
         android:id="@+id/authentication"
         app:startDestination="@id/loginFragment">
@@ -46,11 +35,6 @@
             android:name="com.project.digitalbank.ui.auth.register.RegisterFragment"
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
-        <action
-            android:id="@+id/action_global_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"/>
     </navigation>
     <fragment
         android:id="@+id/homeFragment"
@@ -61,16 +45,8 @@
             android:id="@+id/action_homeFragment_to_depositFormFragment"
             app:destination="@id/depositFormFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_depositReceiptFragment"
-            app:destination="@id/depositReceiptFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_statementFragment"
             app:destination="@id/statementFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_authentication"
-            app:destination="@id/authentication"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_homeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
@@ -78,26 +54,14 @@
             android:id="@+id/action_homeFragment_to_rechargeFormFragment"
             app:destination="@id/rechargeFormFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_rechargeReceiptFragment"
-            app:destination="@id/rechargeReceiptFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_transferUserListFragment"
             app:destination="@id/transferUserListFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_transferReceiptFragment"
-            app:destination="@id/transferReceiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
         android:name="com.project.digitalbank.ui.features.deposit.DepositFormFragment"
         android:label="fragment_deposit_form"
-        tools:layout="@layout/fragment_deposit_form" >
-        <action
-            android:id="@+id/action_depositFormFragment_to_depositReceiptFragment"
-            app:destination="@id/depositReceiptFragment"
-            app:popUpTo="@id/depositFormFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_deposit_form" />
     <fragment
         android:id="@+id/depositReceiptFragment"
         android:name="com.project.digitalbank.ui.features.deposit.DepositReceiptFragment"
@@ -111,17 +75,7 @@
         android:id="@+id/statementFragment"
         android:name="com.project.digitalbank.ui.features.statement.StatementFragment"
         android:label="fragment_statement"
-        tools:layout="@layout/fragment_statement" >
-        <action
-            android:id="@+id/action_statementFragment_to_depositReceiptFragment"
-            app:destination="@id/depositReceiptFragment" />
-        <action
-            android:id="@+id/action_statementFragment_to_rechargeReceiptFragment"
-            app:destination="@id/rechargeReceiptFragment" />
-        <action
-            android:id="@+id/action_statementFragment_to_transferReceiptFragment"
-            app:destination="@id/transferReceiptFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_statement" />
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.project.digitalbank.ui.user_profile.UserProfileFragment"
@@ -132,13 +86,7 @@
         android:id="@+id/rechargeFormFragment"
         android:name="com.project.digitalbank.ui.features.recharge.RechargeFormFragment"
         android:label="fragment_recharge_form"
-        tools:layout="@layout/fragment_recharge_form" >
-        <action
-            android:id="@+id/action_rechargeFormFragment_to_rechargeReceiptFragment"
-            app:destination="@id/rechargeReceiptFragment"
-            app:popUpTo="@id/rechargeFormFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_recharge_form" />
     <fragment
         android:id="@+id/rechargeReceiptFragment"
         android:name="com.project.digitalbank.ui.features.recharge.RechargeReceiptFragment"
@@ -182,11 +130,6 @@
         <argument
             android:name="amount"
             app:argType="float" />
-        <action
-            android:id="@+id/action_confirmTransferFragment_to_transferReceiptFragment"
-            app:destination="@id/transferReceiptFragment"
-            app:popUpTo="@id/transferUserListFragment"
-            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/transferReceiptFragment"
@@ -197,4 +140,9 @@
             android:name="transferId"
             app:argType="string" />
     </fragment>
+    <action android:id="@+id/action_global_transferReceiptFragment" app:destination="@id/transferReceiptFragment" />
+    <action android:id="@+id/action_global_rechargeReceiptFragment" app:destination="@id/rechargeReceiptFragment" />
+    <action android:id="@+id/action_global_depositReceiptFragment" app:destination="@id/depositReceiptFragment" />
+    <action android:id="@+id/action_global_authentication" app:destination="@id/authentication"/>
+    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
 </navigation>

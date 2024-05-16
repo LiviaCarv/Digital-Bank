@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
 import com.project.digitalbank.databinding.FragmentLoginBinding
@@ -74,7 +75,8 @@ class LoginFragment : Fragment() {
                 is StateView.Success -> {
                     Toast.makeText(requireContext(), "Login...", Toast.LENGTH_SHORT).show()
                     binding.progressBar.isVisible = false
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment,true).build()
+                    findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
                 }
                 else -> {
                     binding.progressBar.isVisible = false

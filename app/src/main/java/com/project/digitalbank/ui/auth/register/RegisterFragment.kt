@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
@@ -106,7 +107,8 @@ class RegisterFragment : Fragment() {
                 is StateView.Loading -> {}
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.authentication,true).build()
+                    findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
                 }
                 else -> {
                     binding.progressBar.isVisible = false

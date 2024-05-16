@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.project.digitalbank.NavigationGraphDirections
 import com.project.digitalbank.R
 import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.data.enum.TransactionType
@@ -116,7 +117,7 @@ class DepositFormFragment : Fragment() {
                     stateView.data?.let {
                         StateView.Success(transaction)
                         binding.progressBar.isVisible = false
-                        val action = DepositFormFragmentDirections.actionDepositFormFragmentToDepositReceiptFragment(deposit.id)
+                        val action = NavigationGraphDirections.actionGlobalDepositReceiptFragment(deposit.id)
                         findNavController().navigate(action)
                     }
                 }

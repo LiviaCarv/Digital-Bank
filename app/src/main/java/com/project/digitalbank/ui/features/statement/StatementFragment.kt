@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.project.digitalbank.NavigationGraphDirections
 import com.project.digitalbank.data.enum.TransactionOperation
 import com.project.digitalbank.databinding.FragmentStatementBinding
 import com.project.digitalbank.ui.home.HomeFragmentDirections
@@ -45,15 +46,15 @@ class StatementFragment : Fragment() {
         transactionsAdapter = TransactionsAdapter(requireContext()) {
             when (it.operation) {
                 TransactionOperation.DEPOSIT -> {
-                    val action = StatementFragmentDirections.actionStatementFragmentToDepositReceiptFragment(it.id)
+                    val action = NavigationGraphDirections.actionGlobalDepositReceiptFragment(it.id)
                     findNavController().navigate(action)
                 }
                 TransactionOperation.RECHARGE -> {
-                    val action = StatementFragmentDirections.actionStatementFragmentToRechargeReceiptFragment(it.id)
+                    val action = NavigationGraphDirections.actionGlobalRechargeReceiptFragment(it.id)
                     findNavController().navigate(action)
                 }
                 TransactionOperation.TRANSFER -> {
-                    val action = StatementFragmentDirections.actionStatementFragmentToTransferReceiptFragment(it.id)
+                    val action = NavigationGraphDirections.actionGlobalTransferReceiptFragment(it.id)
                     findNavController().navigate(action)
                 }
                 else -> {}
