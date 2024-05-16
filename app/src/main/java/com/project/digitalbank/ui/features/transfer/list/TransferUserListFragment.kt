@@ -58,9 +58,11 @@ class TransferUserListFragment : Fragment() {
             override fun onQueryTextChange(newText: String): Boolean {
                 return if (newText.isNotEmpty()) {
                     val newList = profilesList.filter { it.name.contains(newText , true) }
+                    emptyUserList(newList)
                     transferUserListAdapter.submitList(newList)
                     true
                 } else {
+                    emptyUserList(profilesList)
                     transferUserListAdapter.submitList(profilesList)
                     false
                 }
@@ -85,6 +87,7 @@ class TransferUserListFragment : Fragment() {
             // ao fechar a caixa de pesquisa
 
             override fun onSearchViewClosed() {
+                emptyUserList(profilesList)
                 transferUserListAdapter.submitList(profilesList)
             }
 
@@ -108,6 +111,10 @@ class TransferUserListFragment : Fragment() {
             setHasFixedSize(true)
             adapter = transferUserListAdapter
         }
+    }
+
+    private fun emptyUserList(list: List<User>) {
+        binding.txtNoUsersAvailable.isVisible = list.isEmpty()
     }
 
     private fun getUsersList() {

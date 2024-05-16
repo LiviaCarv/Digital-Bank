@@ -72,7 +72,11 @@ class StatementFragment : Fragment() {
                 is StateView.Loading -> { }
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    transactionsAdapter.submitList(stateView.data?.reversed())
+                    if (stateView.data?.isEmpty() == true) {
+                        binding.txtNoTransactions.isVisible = true
+                    } else {
+                        transactionsAdapter.submitList(stateView.data?.reversed())
+                    }
                 }
                 else -> {
                     showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))

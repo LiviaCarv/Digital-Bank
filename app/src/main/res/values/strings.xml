@@ -104,5 +104,7 @@
     <string name="transfer_confirmation">Confirm Transfer</string>
     <string name="redefine_amount">Redefine Amount</string>
     <string name="transfer_made_by">Transfer made by:</string>
+    <string name="no_transactions_made">You haven\'t made any transactions yet.</string>
+    <string name="no_users_available">No users found.</string>
 
 </resources>

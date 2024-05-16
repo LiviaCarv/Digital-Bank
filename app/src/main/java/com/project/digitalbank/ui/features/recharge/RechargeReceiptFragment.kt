@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.digitalbank.R
@@ -44,7 +45,8 @@ class RechargeReceiptFragment : Fragment() {
 
     private fun initListener() {
         binding.btnConfirm.setOnClickListener {
-            findNavController().popBackStack()
+            val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.rechargeFormFragment,true).build()
+            findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
         }
     }
 
