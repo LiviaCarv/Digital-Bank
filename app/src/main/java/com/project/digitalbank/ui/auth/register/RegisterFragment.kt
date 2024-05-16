@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.digitalbank.R
 import com.project.digitalbank.data.model.User
-import com.project.digitalbank.data.model.Wallet
 import com.project.digitalbank.databinding.FragmentRegisterBinding
 import com.project.digitalbank.ui.user_profile.UserProfileViewModel
-import com.project.digitalbank.ui.wallet.WalletViewModel
 import com.project.digitalbank.util.FirebaseHelper
 import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
@@ -29,7 +26,6 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private val registerViewModel: RegisterViewModel by viewModels()
     private val userProfileViewModel: UserProfileViewModel by viewModels()
-    private val walletViewModel: WalletViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -109,7 +105,8 @@ class RegisterFragment : Fragment() {
             when (stateView) {
                 is StateView.Loading -> {}
                 is StateView.Success -> {
-                    initWallet()
+                    binding.progressBar.isVisible = false
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
                 else -> {
                     binding.progressBar.isVisible = false
@@ -119,23 +116,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun initWallet() {
-        walletViewModel.initWallet(Wallet(userId = FirebaseHelper.getUserId()))
-            .observe(viewLifecycleOwner) { stateView ->
-                when (stateView) {
-                    is StateView.Loading -> {}
-                    is StateView.Success -> {
-                        binding.progressBar.isVisible = false
-                        findNavController().navigate(R.id.action_global_homeFragment)
-                    }
 
-                    else -> {
-                        binding.progressBar.isVisible = false
-                        showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
-                    }
-                }
-            }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

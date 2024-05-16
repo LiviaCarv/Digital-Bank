@@ -150,7 +150,8 @@ class HomeFragment : Fragment() {
 
                    }
                    override fun onError(e: Exception?) {
-                       TODO("Not yet implemented")
+                       binding.iconProgressBar.isVisible = false
+                       binding.imgUserIcon.setImageResource(R.drawable.ic_user_place_holder)
                    }
                })
        } else {
