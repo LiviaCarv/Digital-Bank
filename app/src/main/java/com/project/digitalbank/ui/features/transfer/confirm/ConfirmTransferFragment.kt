@@ -1,10 +1,12 @@
 package com.project.digitalbank.ui.features.transfer.confirm
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -56,6 +58,8 @@ class ConfirmTransferFragment : Fragment() {
 
     private fun initListener() {
         binding.btnConfirm.setOnClickListener {
+            binding.btnConfirm.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray))
+            binding.btnConfirm.isEnabled = false
             getBalance()
         }
     }
@@ -159,6 +163,7 @@ class ConfirmTransferFragment : Fragment() {
                 }
 
                 else -> {
+                    binding.btnConfirm.isEnabled = true
                     binding.progressBar.isVisible = false
                     showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message.toString())))
                 }

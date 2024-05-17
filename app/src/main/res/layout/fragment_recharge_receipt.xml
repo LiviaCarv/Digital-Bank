@@ -172,12 +172,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_between_elements_16dp"
         android:layout_marginVertical="@dimen/default_margin"
-        app:mask="(##) #####-####"
         android:enabled="false"
         android:textColor="@color/black"
+        android:background="@android:color/transparent"
         android:textSize="@dimen/smaller_text_size_14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_show_recharge_value"
+        app:mask="(##) #####-####"
         tools:text="92 99999-9999" />
 
 
