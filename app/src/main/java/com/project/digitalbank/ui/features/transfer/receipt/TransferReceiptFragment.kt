@@ -117,7 +117,9 @@ class TransferReceiptFragment : Fragment() {
                     }
 
                     override fun onError(e: Exception?) {
-                        TODO("Not yet implemented")
+                        binding.imgDestIcon.setImageResource(R.drawable.ic_user_place_holder)
+                        binding.imgDestIcon.isVisible = true
+                        binding.imgProgressBar.isVisible = false
                     }
                 })
         } else {

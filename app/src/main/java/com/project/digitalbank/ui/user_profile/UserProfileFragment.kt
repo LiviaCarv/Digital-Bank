@@ -34,6 +34,7 @@ import com.project.digitalbank.util.StateView
 import com.project.digitalbank.util.hideKeyboard
 import com.project.digitalbank.util.initToolBar
 import com.project.digitalbank.util.showBottomSheet
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -51,6 +52,8 @@ class UserProfileFragment : Fragment() {
     private var user: User? = null
     private var imageProfile: String? = null
     private var currentPhotoPath: String? = null
+    private val tagPicasso = "tagPicasso"
+
 
 
     override fun onCreateView(
@@ -383,12 +386,24 @@ class UserProfileFragment : Fragment() {
     private fun configData() {
         user?.let {
             binding.apply {
-                if (it.imageProfile != "") {
+
+                if (it.imageProfile.isNotEmpty()) {
                     Picasso
                         .get()
                         .load(it.imageProfile)
+                        .tag(tagPicasso)
                         .fit().centerCrop()
-                        .into(imgUserIcon)
+                        .into(binding.imgUserIcon, object : Callback {
+                            override fun onSuccess() {
+                                binding.imgUserIcon.isVisible = true
+
+                            }
+                            override fun onError(e: java.lang.Exception?) {
+                                binding.imgUserIcon.setImageResource(R.drawable.ic_user_place_holder)
+                            }
+                        })
+                } else {
+                    binding.imgUserIcon.setImageResource(R.drawable.ic_user_place_holder)
                 }
                 edtTextName.setText(it.name)
                 edtTextTelephone.setText(it.phone)
@@ -400,6 +415,7 @@ class UserProfileFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Picasso.get().cancelTag(tagPicasso)
         _binding = null
     }
 }
